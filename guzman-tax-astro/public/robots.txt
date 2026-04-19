@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /portal-de-clientes/
+
+Sitemap: https://guzmantaxaccounting.com/sitemap.xml
