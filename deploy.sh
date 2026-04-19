@@ -1,11 +1,11 @@
 #!/bin/bash
 echo "Buscando ZIP..."
-ZIP=$(ls /sdcard/Download/*.zip 2>/dev/null | head -1)
-if [ -z "$ZIP" ]; then
-  echo "No se encontró ningún ZIP en Descargas"
+ZIP=/sdcard/Download/siny_astro.zip
+if [ ! -f "$ZIP" ]; then
+  echo "No se encontró siny_astro.zip en Descargas"
   exit 1
 fi
-echo "Descomprimiendo $ZIP..."
+echo "Descomprimiendo..."
 TMPDIR=~/tmp_deploy
 rm -rf "$TMPDIR"
 mkdir "$TMPDIR"
