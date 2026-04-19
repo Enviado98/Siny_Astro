@@ -6,7 +6,13 @@ if [ -z "$ZIP" ]; then
   exit 1
 fi
 echo "Descomprimiendo $ZIP..."
-unzip -o "$ZIP" -d .
+TMPDIR=~/tmp_deploy
+rm -rf "$TMPDIR"
+mkdir "$TMPDIR"
+unzip -o "$ZIP" -d "$TMPDIR"
+SUBDIR=$(ls "$TMPDIR" | head -1)
+cp -r "$TMPDIR/$SUBDIR/." .
+rm -rf "$TMPDIR"
 echo "Subiendo a GitHub..."
 git add .
 git commit -m "update"
