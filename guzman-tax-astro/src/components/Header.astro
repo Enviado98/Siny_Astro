@@ -20,9 +20,9 @@ const nav = lang === 'es'
         { label: 'Todos los Servicios', href: '/servicios' },
         { label: 'Preparación de Taxes', href: '/taxes' },
       ],
-      about:     { label: 'Quiénes Somos',  href: '/nuestro-equipo' },
-      blog:      { label: 'Blog Fiscal',    href: '/blog' },
-      consult:   { label: 'Consulta Gratis',href: '/consulta-gratuita' },
+      about:     { label: 'Nosotros',        href: '/nuestro-equipo' },
+      blog:      { label: 'Blog',           href: '/blog' },
+      consult:   { label: 'Consulta',       href: '/consulta-gratuita' },
       contact:   { label: 'Contacto',       href: '/contacto' },
       cta:       'Agenda Ahora',
       ctaHref:   '/consulta-gratuita',
@@ -36,9 +36,9 @@ const nav = lang === 'es'
         { label: 'All Services',       href: '/en/services' },
         { label: 'Tax Preparation',    href: '/en/taxes' },
       ],
-      about:     { label: 'About Us',       href: '/en/about' },
+      about:     { label: 'About',          href: '/en/about' },
       blog:      { label: 'Blog',           href: '/en/blog' },
-      consult:   { label: 'Free Consult',   href: '/en/free-consultation' },
+      consult:   { label: 'Consult',        href: '/en/free-consultation' },
       contact:   { label: 'Contact',        href: '/en/contact' },
       cta:       'Book Now',
       ctaHref:   '/en/free-consultation',
@@ -98,16 +98,20 @@ const nav = lang === 'es'
         </a>
         <a href={nav.ctaHref} class="btn btn-primary">{nav.cta}</a>
 
-        <!-- Lang Switch -->
+        <!-- Lang Switch desktop -->
         <a class="lang-switch" data-lang-href={langHref} title={nav.langLabel === 'EN' ? 'English' : 'Español'}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="9"/>
-            <path d="M12 3a14 14 0 0 1 0 18"/>
-            <path d="M3.6 9h16.8"/>
-          </svg>
-          <span>{nav.langLabel}</span>
+          <span class={lang === 'es' ? 'ls-active' : 'ls-inactive'}>ES</span>
+          <span class="ls-divider"></span>
+          <span class={lang === 'en' ? 'ls-active' : 'ls-inactive'}>EN</span>
         </a>
       </div>
+
+      <!-- Lang Switch móvil (siempre visible) -->
+      <a class="lang-switch lang-switch-mobile" data-lang-href={langHref} title={nav.langLabel === 'EN' ? 'English' : 'Español'}>
+        <span class={lang === 'es' ? 'ls-active' : 'ls-inactive'}>ES</span>
+        <span class="ls-divider"></span>
+        <span class={lang === 'en' ? 'ls-active' : 'ls-inactive'}>EN</span>
+      </a>
 
       <button class="hamburger" aria-label={lang === 'es' ? 'Abrir menú' : 'Open menu'}>
         <span></span><span></span><span></span>
