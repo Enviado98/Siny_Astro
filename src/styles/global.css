@@ -426,31 +426,32 @@ p { margin-bottom: 1rem; }
   align-items: center;
   gap: 0;
   font-family: var(--font-body);
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   text-decoration: none;
-  background: #f0f0f0;
-  border: 1px solid rgba(0,0,0,0.1);
+  background: #efefef;
+  border: 1px solid rgba(0,0,0,0.08);
   border-radius: 20px;
-  padding: 4px 5px;
+  padding: 3px 4px;
   cursor: pointer;
   transition: box-shadow 0.2s;
   flex-shrink: 0;
+  opacity: 0.85;
 }
-.lang-switch:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.12); }
+.lang-switch:hover { box-shadow: 0 1px 6px rgba(0,0,0,0.1); opacity: 1; }
 .lang-switch .ls-active {
   background: #111;
   color: #fff;
   border-radius: 20px;
-  padding: 3px 9px;
+  padding: 2px 7px;
 }
 .lang-switch .ls-inactive {
-  color: #888;
-  padding: 3px 9px;
+  color: #999;
+  padding: 2px 7px;
 }
 .lang-switch .ls-divider { display: none; }
-/* Móvil: siempre visible al lado del hamburger */
+/* Móvil: siempre visible justo antes del hamburger */
 .lang-switch-mobile { display: none; }
 @media (max-width: 1280px) {
   .lang-switch-mobile { display: inline-flex; }
