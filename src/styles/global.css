@@ -632,12 +632,12 @@ p { margin-bottom: 1rem; }
 /* ── Scroll-driven: browsers modernos (Chrome 115+, Firefox 110+) ── */
 @supports (animation-timeline: scroll()) {
   @keyframes siny-scroll-out {
-    from { transform: translateX(0);      opacity: 1; }
-    to   { transform: translateX(-180px); opacity: 1; }
+    from { transform: translateX(0); }
+    to   { transform: translateX(-180px); }
   }
   @keyframes jeziel-scroll-out {
-    from { transform: translateX(0);     opacity: 1; }
-    to   { transform: translateX(180px); opacity: 1; }
+    from { transform: translateX(0); }
+    to   { transform: translateX(180px); }
   }
   @keyframes names-fade-out {
     from { opacity: 1; }
@@ -648,11 +648,13 @@ p { margin-bottom: 1rem; }
     animation: siny-scroll-out linear both;
     animation-timeline: scroll(root);
     animation-range: 0px 320px;
+    opacity: 1;
   }
   .hero-photo-jeziel-wrap.scroll-ready {
     animation: jeziel-scroll-out linear both;
     animation-timeline: scroll(root);
     animation-range: 0px 320px;
+    opacity: 1;
   }
   .hero-team-name.scroll-ready {
     animation: names-fade-out linear both;

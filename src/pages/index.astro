@@ -124,6 +124,8 @@ const schema = JSON.stringify({
     if (supportsScrollTimeline) {
       // ── Modern path: pure CSS scroll-driven ──
       // Add class that activates the @supports block in CSS
+      siny.style.opacity   = '1';
+      jeziel.style.opacity = '1';
       siny.classList.add('scroll-ready');
       jeziel.classList.add('scroll-ready');
       names.forEach(n => n.classList.add('scroll-ready'));
