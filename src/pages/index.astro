@@ -123,11 +123,11 @@ const schema = JSON.stringify({
   function onScroll() {
     const rect    = heroSection.getBoundingClientRect();
     const heroH   = heroSection.offsetHeight;
-    // progress: 0 (hero fully visible) → 1 (hero fully scrolled out)
-    const progress = Math.min(Math.max(-rect.top / heroH, 0), 1);
+    // Divide by heroH * 0.4 so animation completes in the first 40% of scroll
+    const progress = Math.min(Math.max(-rect.top / (heroH * 0.4), 0), 1);
 
-    const spread = progress * 140; // max px spread
-    const fade   = 1 - Math.min(progress * 4, 1); // names fade faster
+    const spread = progress * 160; // max px spread
+    const fade   = 1 - Math.min(progress * 2, 1); // names fade out in first half
 
     siny.style.transform   = `translateX(${-spread}px)`;
     jeziel.style.transform = `translateX(${spread}px)`;

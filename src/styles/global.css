@@ -140,6 +140,7 @@ p { margin-bottom: 1rem; }
   font-size: 0.82rem;
   padding: 7px 0;
   border-bottom: 1px solid rgba(0,0,0,0.06);
+  min-height: 34px;
 }
 .topbar-center {
   display: flex;
@@ -489,7 +490,6 @@ p { margin-bottom: 1rem; }
   display: flex;
   align-items: center;
   position: relative;
-  overflow: hidden;
 }
 .hero::before { display: none; }
 .hero-bg { display: none; }
