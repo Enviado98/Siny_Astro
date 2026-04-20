@@ -1,0 +1,122 @@
+---
+export interface Props {
+  lang?: 'es' | 'en';
+  langHref?: string;
+  currentPath?: string;
+}
+
+const { lang = 'es', langHref = '/en/', currentPath = '/' } = Astro.props;
+
+const isActive = (href: string) => {
+  if (href === '/' || href === '/en/') return currentPath === href;
+  return currentPath.startsWith(href.replace('.html', '').replace('/en/', '/en/'));
+};
+
+const nav = lang === 'es'
+  ? {
+      home:      { label: 'Inicio',         href: '/' },
+      services:  { label: 'Servicios ▾',    href: '/servicios' },
+      servicesDropdown: [
+        { label: 'Todos los Servicios', href: '/servicios' },
+        { label: 'Preparación de Taxes', href: '/taxes' },
+      ],
+      about:     { label: 'Nosotros',        href: '/nuestro-equipo' },
+      blog:      { label: 'Blog',           href: '/blog' },
+      consult:   { label: 'Consulta',       href: '/consulta-gratuita' },
+      contact:   { label: 'Contacto',       href: '/contacto' },
+      cta:       'Agenda Ahora',
+      ctaHref:   '/consulta-gratuita',
+      phone:     '(725) 340-6758',
+      langLabel: 'EN',
+    }
+  : {
+      home:      { label: 'Home',           href: '/en/' },
+      services:  { label: 'Services ▾',     href: '/en/services' },
+      servicesDropdown: [
+        { label: 'All Services',       href: '/en/services' },
+        { label: 'Tax Preparation',    href: '/en/taxes' },
+      ],
+      about:     { label: 'About',          href: '/en/about' },
+      blog:      { label: 'Blog',           href: '/en/blog' },
+      consult:   { label: 'Consult',        href: '/en/free-consultation' },
+      contact:   { label: 'Contact',        href: '/en/contact' },
+      cta:       'Book Now',
+      ctaHref:   '/en/free-consultation',
+      phone:     '(725) 340-6758',
+      langLabel: 'ES',
+    };
+---
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="container">
+    <div class="topbar-left">
+      <a href={`tel:+17253406758`}>
+        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.77a16 16 0 0 0 6 6l1.92-1.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+        (725) 340-6758
+      </a>
+      <a href="mailto:info@guzmantaxaccounting.com">info@guzmantaxaccounting.com</a>
+    </div>
+    <div class="topbar-right">
+      <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        {lang === 'es' ? 'Dom – Vie: 9 AM – 7 PM' : 'Sun – Fri: 9 AM – 7 PM'}
+      </span>
+      <a href="https://www.facebook.com/guzmantaxaccounting" target="_blank" rel="noopener">Facebook</a>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="container">
+    <nav class="nav">
+      <a href={lang === 'es' ? '/' : '/en/'} class="nav-logo" aria-label="Guzman Tax Accounting">
+        <span class="logo-text"><span class="logo-g">G</span>uzmán</span>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href={nav.home.href} class={isActive(nav.home.href) ? 'active' : ''}>{nav.home.label}</a></li>
+        <li class="has-dropdown">
+          <a href={nav.services.href} class={isActive(nav.services.href) ? 'active' : ''}>{nav.services.label}</a>
+          <ul class="dropdown">
+            {nav.servicesDropdown.map(item => (
+              <li><a href={item.href}>{item.label}</a></li>
+            ))}
+          </ul>
+        </li>
+        <li><a href={nav.about.href} class={isActive(nav.about.href) ? 'active' : ''}>{nav.about.label}</a></li>
+        <li><a href={nav.blog.href} class={isActive(nav.blog.href) ? 'active' : ''}>{nav.blog.label}</a></li>
+        <li><a href={nav.consult.href} class={isActive(nav.consult.href) ? 'active' : ''}>{nav.consult.label}</a></li>
+        <li><a href={nav.contact.href} class={isActive(nav.contact.href) ? 'active' : ''}>{nav.contact.label}</a></li>
+      </ul>
+
+      <div class="nav-cta">
+        <a href={`tel:+17253406758`} class="nav-phone">
+          <span class="svg-icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.77a16 16 0 0 0 6 6l1.92-1.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+          {nav.phone}
+        </a>
+        <a href={nav.ctaHref} class="btn btn-primary">{nav.cta}</a>
+
+        <!-- Lang Switch desktop -->
+        <a class="lang-switch" data-lang-href={langHref} title={nav.langLabel === 'EN' ? 'English' : 'Español'}>
+          <span class={lang === 'es' ? 'ls-active' : 'ls-inactive'}>ES</span>
+          <span class="ls-divider"></span>
+          <span class={lang === 'en' ? 'ls-active' : 'ls-inactive'}>EN</span>
+        </a>
+      </div>
+
+      <div class="nav-mobile-right">
+        <!-- Lang Switch móvil (siempre visible) -->
+        <a class="lang-switch lang-switch-mobile" data-lang-href={langHref} title={nav.langLabel === 'EN' ? 'English' : 'Español'}>
+          <span class={lang === 'es' ? 'ls-active' : 'ls-inactive'}>ES</span>
+          <span class="ls-divider"></span>
+          <span class={lang === 'en' ? 'ls-active' : 'ls-inactive'}>EN</span>
+        </a>
+        <button class="hamburger" aria-label={lang === 'es' ? 'Abrir menú' : 'Open menu'}>
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>

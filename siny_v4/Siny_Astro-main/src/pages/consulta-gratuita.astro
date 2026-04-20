@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Agenda una Consulta Gratuita – Guzman Tax Accounting" description="Agenda tu consulta gratuita con expertos en taxes y contabilidad en Las Vegas. Sin compromiso, en español." lang="es" langHref="/en/free-consultation">
+<section class="page-hero"><div class="container"><div class="breadcrumb"><a href="/">Inicio</a> <span>›</span> <span>Consulta Gratuita</span></div><h1>Agenda una Consulta</h1><p>Sin compromiso. Sin cargos ocultos. Te explicamos todo en tu idioma.</p></div></section>
+<section class="section"><div class="container"><div class="contact-grid">
+  <div class="contact-info">
+    <p class="eyebrow">¿Cómo funciona?</p><h2>Tu Primera Consulta, Gratis</h2>
+    <p>Llámanos, escríbenos por WhatsApp o completa el formulario. Uno de nuestros expertos se pondrá en contacto contigo para conocer tu situación y orientarte sin ningún costo.</p>
+    <div class="mission-points">
+      <div class="mission-point"><div class="mission-point-icon">1</div><div class="mission-point-text"><h4>Contáctanos</h4><p>Llama, WhatsApp o rellena el formulario.</p></div></div>
+      <div class="mission-point"><div class="mission-point-icon">2</div><div class="mission-point-text"><h4>Evaluamos tu Caso</h4><p>Te explicamos qué servicio necesitas y cuánto cuesta.</p></div></div>
+      <div class="mission-point"><div class="mission-point-icon">3</div><div class="mission-point-text"><h4>Tú Decides</h4><p>Sin presión. Tú decides si quieres continuar.</p></div></div>
+    </div>
+    <div style="margin-top:32px;display:flex;flex-direction:column;gap:14px;">
+      <a href="tel:+17253406758" class="btn btn-primary">Llamar: (725) 340-6758</a>
+      <a href="https://wa.me/17253406758" class="btn btn-outline" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+    </div>
+    <div style="margin-top:24px;padding:14px;background:var(--gray);border-radius:8px;font-size:.82rem;color:var(--text-light);"><strong>Aviso:</strong> Guzman Tax Accounting & Multi Services no está actualmente licenciada como CPA en el estado de Nevada. Ofrecemos servicios de taxes, bookkeeping y consultoría basados en experiencia profesional.</div>
+  </div>
+  <div><div class="form-card">
+    <h3 style="margin-bottom:6px;">Solicita tu Consulta Gratuita</h3>
+    <p style="color:var(--text-light);font-size:.9rem;margin-bottom:24px;">Completa el formulario y te contactamos pronto.</p>
+    <form id="contact-form">
+      <div class="form-row"><div class="form-group"><label>Nombre *</label><input type="text" name="nombre" placeholder="Tu nombre completo" required/></div><div class="form-group"><label>Teléfono *</label><input type="tel" name="telefono" placeholder="(702) 000-0000" required/></div></div>
+      <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="tu@email.com"/></div>
+      <div class="form-group"><label>¿Qué necesitas? *</label><select name="servicio" required><option value="">Selecciona...</option><option>Preparación de Taxes (Personal)</option><option>Preparación de Taxes (Negocio/LLC)</option><option>Crear una LLC</option><option>Bookkeeping mensual</option><option>Nómina y Payroll</option><option>Carta del IRS</option><option>Otro</option></select></div>
+      <div class="form-group"><label>Mensaje adicional</label><textarea name="mensaje" placeholder="Cuéntanos brevemente tu situación..."></textarea></div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;font-size:1.1rem;padding:16px;">Solicitar Consulta Gratuita</button>
+    </form>
+  </div></div>
+</div></div></section>
+</Layout>
