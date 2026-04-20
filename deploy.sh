@@ -13,6 +13,8 @@ unzip -o "$ZIP" -d "$TMPDIR"
 SUBDIR=$(ls "$TMPDIR" | head -1)
 cp -r "$TMPDIR/$SUBDIR/." .
 rm -rf "$TMPDIR"
+echo "Sincronizando con GitHub..."
+git pull --rebase
 echo "Subiendo a GitHub..."
 git add .
 git commit -m "update"
