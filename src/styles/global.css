@@ -420,30 +420,41 @@ p { margin-bottom: 1rem; }
 .fs-bottom .btn-outline { border-color: rgba(255,255,255,0.3); color: #fff; }
 .fs-bottom .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.6); }
 
-/* ---- LANGUAGE SWITCHER ---- */
+/* ---- LANGUAGE SWITCHER PÍLDORA ---- */
 .lang-switch {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 0;
   font-family: var(--font-body);
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  color: var(--text);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   text-decoration: none;
-  background: none;
-  border: 1px solid rgba(0,0,0,0.15);
+  background: #f0f0f0;
+  border: 1px solid rgba(0,0,0,0.1);
   border-radius: 20px;
-  padding: 5px 10px;
+  padding: 4px 5px;
   cursor: pointer;
-  transition: border-color 0.2s, background 0.2s;
+  transition: box-shadow 0.2s;
   flex-shrink: 0;
 }
-.lang-switch:hover {
-  border-color: rgba(0,0,0,0.35);
-  background: rgba(0,0,0,0.04);
+.lang-switch:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.12); }
+.lang-switch .ls-active {
+  background: #111;
+  color: #fff;
+  border-radius: 20px;
+  padding: 3px 9px;
 }
-.lang-switch svg { flex-shrink: 0; }
+.lang-switch .ls-inactive {
+  color: #888;
+  padding: 3px 9px;
+}
+.lang-switch .ls-divider { display: none; }
+/* Móvil: siempre visible al lado del hamburger */
+.lang-switch-mobile { display: none; }
+@media (max-width: 1280px) {
+  .lang-switch-mobile { display: inline-flex; }
+}
 /* ============================================
    SECTIONS.CSS — Todas las secciones de contenido
    Toca esto para: cambiar hero, servicios, stats,
@@ -1049,7 +1060,7 @@ a > .svg-icon svg[stroke="currentColor"] { fill: none; }
 }
 
 /* ── Tablet landscape ≤1024px ── */
-@media (max-width: 1024px) {
+@media (max-width: 1280px) {
   .nav-menu, .nav-cta { display: none; }
   .hamburger { display: flex; }
 
