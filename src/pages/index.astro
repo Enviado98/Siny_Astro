@@ -108,37 +108,54 @@ const schema = JSON.stringify({
 
 <script>
 (function () {
-  // Bug fix #3: measure the full .hero section, not just .hero-display
-  const heroSection = document.querySelector('.hero');
   const siny   = document.querySelector('.hero-photo-siny-wrap');
   const jeziel = document.querySelector('.hero-photo-jeziel-wrap');
   const names  = document.querySelectorAll('.hero-team-name');
 
-  if (!heroSection || !siny || !jeziel) return;
+  if (!siny || !jeziel) return;
 
-  // Wait for entry animations to finish before JS takes over opacity
-  let namesReady = false;
-  setTimeout(() => { namesReady = true; }, 1500);
+  // After entry animations finish, hand off to scroll-driven system
+  const ENTRY_DELAY = 1400; // ms — matches longest animation-delay + duration
 
-  function onScroll() {
-    const rect    = heroSection.getBoundingClientRect();
-    const heroH   = heroSection.offsetHeight;
-    // Divide by heroH * 0.4 so animation completes in the first 40% of scroll
-    const progress = Math.min(Math.max(-rect.top / (heroH * 0.4), 0), 1);
+  setTimeout(() => {
+    // Check if CSS scroll-driven animations are supported
+    const supportsScrollTimeline = CSS.supports('animation-timeline', 'scroll()');
 
-    const spread = progress * 160; // max px spread
-    const fade   = 1 - Math.min(progress * 2, 1); // names fade out in first half
+    if (supportsScrollTimeline) {
+      // ── Modern path: pure CSS scroll-driven ──
+      // Add class that activates the @supports block in CSS
+      siny.classList.add('scroll-ready');
+      jeziel.classList.add('scroll-ready');
+      names.forEach(n => n.classList.add('scroll-ready'));
 
-    siny.style.transform   = `translateX(${-spread}px)`;
-    jeziel.style.transform = `translateX(${spread}px)`;
+    } else {
+      // ── Fallback: rAF-based for Safari ──
+      const heroSection = document.querySelector('.hero');
+      if (!heroSection) return;
 
-    // Bug fix #1: only override opacity after entry animation is done
-    if (namesReady) {
-      names.forEach(n => { n.style.opacity = fade; });
+      let ticking = false;
+
+      function update() {
+        const rect     = heroSection.getBoundingClientRect();
+        const heroH    = heroSection.offsetHeight;
+        const progress = Math.min(Math.max(-rect.top / (heroH * 0.45), 0), 1);
+        const spread   = progress * 180;
+        const fade     = 1 - Math.min(progress * 2.5, 1);
+
+        siny.style.transform   = `translateX(${-spread}px)`;
+        jeziel.style.transform = `translateX(${spread}px)`;
+        names.forEach(n => { n.style.opacity = fade; });
+        ticking = false;
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(update);
+          ticking = true;
+        }
+      }, { passive: true });
     }
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
+  }, ENTRY_DELAY);
 })();
 </script>
 <!-- SERVICES -->
