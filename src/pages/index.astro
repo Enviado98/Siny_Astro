@@ -1,14 +1,65 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const schema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["AccountingService", "Organization"],
+      "@id": "https://www.guzmantaxaccounting.com/#organization",
+      "name": "Guzman Tax Accounting & Multi Services",
+      "url": "https://www.guzmantaxaccounting.com",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://www.guzmantaxaccounting.com/#logo",
+        "url": "https://www.guzmantaxaccounting.com/wp-content/uploads/2025/11/cropped-FINAL-LOGO-2.png",
+        "contentUrl": "https://www.guzmantaxaccounting.com/wp-content/uploads/2025/11/cropped-FINAL-LOGO-2.png",
+        "caption": "Guzman Tax Accounting & Multi Services",
+        "inLanguage": "es",
+        "width": "1080",
+        "height": "446"
+      },
+      "openingHours": ["Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday 09:00-17:00"],
+      "telephone": "+1-725-340-6758",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Las Vegas",
+        "addressRegion": "NV",
+        "addressCountry": "US"
+      },
+      "image": { "@id": "https://www.guzmantaxaccounting.com/#logo" }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.guzmantaxaccounting.com/#website",
+      "url": "https://www.guzmantaxaccounting.com",
+      "name": "Guzman Tax Accounting & Multi Services",
+      "alternateName": "Guzman Tax Accounting",
+      "publisher": { "@id": "https://www.guzmantaxaccounting.com/#organization" },
+      "inLanguage": "es"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.guzmantaxaccounting.com/#webpage",
+      "url": "https://www.guzmantaxaccounting.com/",
+      "name": "Taxes en Español Las Vegas | Contador Cerca de Ti",
+      "isPartOf": { "@id": "https://www.guzmantaxaccounting.com/#website" },
+      "about": { "@id": "https://www.guzmantaxaccounting.com/#organization" },
+      "inLanguage": "es"
+    }
+  ]
+});
 ---
 
 <Layout
-  title="Guzman Tax Accounting & Multi Services – Las Vegas, NV"
-  description="Servicios profesionales de taxes y contabilidad en Las Vegas para la comunidad latina. Preparación de impuestos, bookkeeping, LLC y más. Atención en español."
+  title="Taxes en Español Las Vegas | Contador Cerca de Ti"
+  description="Taxes en español Las Vegas | Contador cerca de ti | Preparación de impuestos, bookkeeping y LLC para familias y negocios latinos. Con más de 10 años de experiencia. Atención en español."
   lang="es"
   langHref="/en/"
   hreflangEs="https://guzmantaxaccounting.com/"
   hreflangEn="https://guzmantaxaccounting.com/en/"
+  canonical="https://www.guzmantaxaccounting.com/"
+  schema={schema}
 >
 
 <!-- HERO -->
