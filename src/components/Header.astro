@@ -112,30 +112,36 @@ const nav = lang === 'es'
       label = lang === 'en' ? 'Closed' : 'Cerrado';
     }
 
+    const timeStr = pad(h) + ':' + pad(m) + ':' + pad(s);
     return dot + '<span class="status-label">' + label + '</span>'
       + '<span class="status-sep">·</span>'
       + '<span class="status-date">' + dateStr + '</span>'
       + '<span class="status-sep">·</span>'
-      + '<span class="status-time">'
-      + '<span class="clock-digit" id="cl-h">' + pad(h) + '</span>'
-      + '<span class="clock-colon">:</span>'
-      + '<span class="clock-digit" id="cl-m">' + pad(m) + '</span>'
-      + '<span class="clock-colon">:</span>'
-      + '<span class="clock-digit" id="cl-s">' + pad(s) + '</span>'
+      + '<span class="status-time" id="live-clock">'
+      + timeStr.split('').map(ch => '<span class="clock-char">' + ch + '</span>').join('')
       + '</span>';
   }
 
-  function fadeUpdate(id, val) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    const newVal = val;
-    if (el.textContent === newVal) return;
-    el.style.transition = 'opacity 0.15s';
-    el.style.opacity = '0';
-    setTimeout(() => {
-      el.textContent = newVal;
-      el.style.opacity = '1';
-    }, 150);
+  let lastTime = '';
+
+  function updateClockChars(timeStr) {
+    const clockEl = document.getElementById('live-clock');
+    if (!clockEl) return;
+    if (!lastTime) {
+      clockEl.innerHTML = timeStr.split('').map(ch => '<span class="clock-char">' + ch + '</span>').join('');
+      lastTime = timeStr;
+      return;
+    }
+    const chars = clockEl.querySelectorAll('.clock-char');
+    timeStr.split('').forEach((ch, i) => {
+      if (chars[i] && chars[i].textContent !== ch) {
+        chars[i].classList.remove('clock-flip');
+        void chars[i].offsetHeight;
+        chars[i].textContent = ch;
+        chars[i].classList.add('clock-flip');
+      }
+    });
+    lastTime = timeStr;
   }
 
   let lastMin = -1;
@@ -151,10 +157,10 @@ const nav = lang === 'es'
 
     if (lastMin !== m) {
       el.innerHTML = renderStatus(status, now, h, m, s);
+      lastTime = '';
       lastMin = m;
-    } else {
-      fadeUpdate('cl-s', pad(s));
     }
+    updateClockChars(pad(h) + ':' + pad(m) + ':' + pad(s));
   }
 
   document.addEventListener('DOMContentLoaded', () => {
