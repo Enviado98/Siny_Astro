@@ -1,0 +1,200 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description?: string;
+  lang?: 'es' | 'en';
+  langHref?: string;
+  hreflangEs?: string;
+  hreflangEn?: string;
+}
+
+const {
+  title,
+  description = 'Servicios profesionales de taxes y contabilidad en Las Vegas. Atención en español.',
+  lang = 'es',
+  langHref = lang === 'es' ? '/en/' : '/',
+  hreflangEs,
+  hreflangEn,
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="icon" href="/assets/logo-circle.png" type="image/png" />
+  {hreflangEs && <link rel="alternate" hreflang="es" href={hreflangEs} />}
+  {hreflangEn && <link rel="alternate" hreflang="en" href={hreflangEn} />}
+</head>
+<body>
+  <Header lang={lang} langHref={langHref} currentPath={Astro.url.pathname} />
+  <slot />
+  <Footer lang={lang} />
+
+  <div class="nav-overlay" id="nav-overlay"></div>
+
+  <script is:inline>
+(function initLang() {
+  const isEnPage = window.location.pathname.startsWith('/en');
+  const stored = localStorage.getItem('guzman_lang');
+  if (!stored) {
+    const lang = (navigator.language || 'es').toLowerCase();
+    const prefersEn = lang.startsWith('en');
+    localStorage.setItem('guzman_lang', prefersEn ? 'en' : 'es');
+    if (prefersEn && !isEnPage) { window.location.replace('/en/'); }
+    return;
+  }
+  document.querySelectorAll('.lang-switch').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = this.getAttribute('data-lang-href');
+      if (!target) return;
+      localStorage.setItem('guzman_lang', target.startsWith('/en') ? 'en' : 'es');
+      window.location.href = target;
+    });
+  });
+})();
+  </script>
+
+  <script is:inline>
+(function initMenu() {
+  const hamburger = document.querySelector('.hamburger');
+  const originalMenu = document.querySelector('.nav-menu');
+  const originalCta = document.querySelector('.nav-cta');
+  if (!hamburger) return;
+  const overlay = document.createElement('div');
+  overlay.className = 'fs-overlay';
+  overlay.setAttribute('aria-hidden', 'true');
+  const closeBtn = document.createElement('button');
+  closeBtn.className = 'fs-close';
+  closeBtn.setAttribute('aria-label', 'Cerrar menú');
+  closeBtn.innerHTML = '<span></span><span></span>';
+  closeBtn.addEventListener('click', closeMenu);
+  overlay.appendChild(closeBtn);
+  const fsNav = document.createElement('nav');
+  fsNav.className = 'fs-nav';
+  if (originalMenu) {
+    let index = 0;
+    originalMenu.querySelectorAll(':scope > li').forEach(function(li) {
+      const link = li.querySelector(':scope > a');
+      const dropdown = li.querySelector('.dropdown');
+      const label = link.textContent.replace('▾', '').trim();
+      const item = document.createElement('div');
+      item.className = 'fs-item';
+      item.style.setProperty('--i', index++);
+      if (dropdown) {
+        const toggle = document.createElement('button');
+        toggle.className = 'fs-link fs-toggle';
+        toggle.innerHTML = label + ' <span class="fs-arrow">↓</span>';
+        const sub = document.createElement('div');
+        sub.className = 'fs-subitems';
+        dropdown.querySelectorAll('a').forEach(function(a) {
+          const sa = document.createElement('a');
+          sa.href = a.href; sa.className = 'fs-sublink'; sa.textContent = a.textContent;
+          sa.addEventListener('click', closeMenu);
+          sub.appendChild(sa);
+        });
+        toggle.addEventListener('click', function() { sub.classList.toggle('open'); toggle.classList.toggle('expanded'); });
+        item.appendChild(toggle); item.appendChild(sub);
+      } else {
+        const a = document.createElement('a');
+        a.href = link.href; a.className = 'fs-link'; a.textContent = label;
+        a.addEventListener('click', closeMenu);
+        item.appendChild(a);
+      }
+      fsNav.appendChild(item);
+    });
+  }
+  overlay.appendChild(fsNav);
+  if (originalCta) {
+    const fsBottom = document.createElement('div');
+    fsBottom.className = 'fs-bottom';
+    originalCta.querySelectorAll('a:not(.lang-switch)').forEach(function(a) {
+      const btn = document.createElement('a');
+      btn.href = a.href; btn.className = a.className + ' fs-cta-btn'; btn.innerHTML = a.innerHTML;
+      btn.addEventListener('click', closeMenu);
+      fsBottom.appendChild(btn);
+    });
+    overlay.appendChild(fsBottom);
+  }
+  document.body.appendChild(overlay);
+  function openMenu() { hamburger.classList.add('open'); overlay.classList.add('open'); overlay.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; }
+  function closeMenu() { hamburger.classList.remove('open'); overlay.classList.remove('open'); overlay.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+  hamburger.addEventListener('click', function() { overlay.classList.contains('open') ? closeMenu() : openMenu(); });
+  window.addEventListener('resize', function() { if (window.innerWidth > 1024) closeMenu(); });
+})();
+  </script>
+
+  <script is:inline>
+(function initActiveNav() {
+  const currentPath = window.location.pathname;
+  document.querySelectorAll('.nav-menu a').forEach(function(link) {
+    const href = link.getAttribute('href');
+    if (href && currentPath.includes(href) && href !== '/' && href !== '/en/') {
+      link.classList.add('active');
+    } else if ((href === '/' || href === '/en/') && (currentPath === '/' || currentPath === '/en/')) {
+      link.classList.add('active');
+    }
+  });
+})();
+  </script>
+
+  <script is:inline>
+(function initAnimations() {
+  if (!('IntersectionObserver' in window)) return;
+  const revealObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.service-card, .blog-card, .team-card, .pricing-card, .testimonial-card').forEach(function(el) {
+    el.style.opacity = '0'; el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    revealObserver.observe(el);
+  });
+  function animateCounter(el) {
+    const target = parseInt(el.getAttribute('data-target'));
+    const duration = 1800; const step = target / (duration / 16); let current = 0;
+    const timer = setInterval(function() {
+      current += step;
+      if (current >= target) { el.textContent = target + (el.dataset.suffix || ''); clearInterval(timer); }
+      else { el.textContent = Math.floor(current) + (el.dataset.suffix || ''); }
+    }, 16);
+  }
+  const statsObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) { entry.target.querySelectorAll('[data-target]').forEach(animateCounter); statsObserver.unobserve(entry.target); }
+    });
+  }, { threshold: 0.3 });
+  const statsSection = document.querySelector('.stats-section');
+  if (statsSection) statsObserver.observe(statsSection);
+})();
+  </script>
+
+  <script is:inline>
+(function initForm() {
+  const contactForm = document.getElementById('contact-form');
+  if (!contactForm) return;
+  contactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = contactForm.querySelector('button[type="submit"]');
+    btn.textContent = 'Enviando...'; btn.disabled = true;
+    setTimeout(function() {
+      contactForm.innerHTML = '<div style="text-align:center;padding:40px 20px;"><div style="font-size:3rem;margin-bottom:16px;">✅</div><h3>¡Mensaje enviado!</h3><p style="color:var(--text-light);">Gracias por contactarnos. Te responderemos dentro de 24 horas.</p></div>';
+    }, 1500);
+  });
+})();
+  </script>
+</body>
+</html>
