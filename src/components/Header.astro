@@ -88,7 +88,7 @@ const nav = lang === 'es'
     const dateStr = d.getDate() + ' ' + months[d.getMonth()] + ' ' + String(d.getFullYear()).slice(2);
 
     let badge, detail;
-    const totalMin = now.getHours() * 60 + now.getMinutes();
+    const totalMin = d.getHours() * 60 + d.getMinutes();
     if (status.state === 'open') {
       badge = '<span class="status-badge badge-open">' + (lang === 'en' ? 'OPEN' : 'ABIERTO') + '</span>';
       detail = lang === 'en' ? 'Closes at 7 PM' : 'Cierra a las 7 PM';
