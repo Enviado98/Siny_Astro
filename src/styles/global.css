@@ -138,23 +138,14 @@ p { margin-bottom: 1rem; }
   background: var(--bg);
   color: #2a2a2a;
   font-size: 0.82rem;
-  padding: 8px 0;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
 }
-.topbar .container {
+.topbar-center {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
 }
-.topbar-left, .topbar-right {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-.topbar a { color: #2a2a2a; transition: color 0.2s; }
-.topbar a:hover { color: var(--primary); }
-.topbar .icon { margin-right: 5px; }
 
 /* ---- HEADER / NAV ---- */
 .header {
@@ -1052,15 +1043,15 @@ a > .svg-icon svg[stroke="currentColor"] { fill: none; }
 /* ── Desktop amplio ≤1200px ── */
 
 /* ---- OFFICE STATUS CLOCK ---- */
-.office-status { display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; }
-.status-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-.dot-green  { background: #22c55e; box-shadow: 0 0 5px #22c55e88; }
-.dot-yellow { background: #f59e0b; box-shadow: 0 0 5px #f59e0b88; }
-.dot-red    { background: #ef4444; box-shadow: 0 0 5px #ef444488; }
-.status-label { font-weight: 600; }
-.status-sep  { color: #aaa; }
-.status-date { color: #666; }
-.status-time { font-variant-numeric: tabular-nums; letter-spacing: 0.02em; }
+.office-status { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; flex-wrap: wrap; justify-content: center; }
+.status-badge  { font-size: 0.58rem; font-weight: 800; letter-spacing: 0.1em; padding: 2px 8px; border-radius: 20px; }
+.badge-open    { background: #dcfce7; color: #15803d; }
+.badge-warn    { background: #fef9c3; color: #a16207; }
+.badge-closed  { background: #fee2e2; color: #b91c1c; }
+.status-detail { font-weight: 500; color: #444; }
+.status-sep    { color: #bbb; }
+.status-date   { color: #888; }
+.status-time   { font-variant-numeric: tabular-nums; letter-spacing: 0.02em; color: #555; }
 .clock-char { display: inline-block; }
 .clock-flip { animation: clock-blur 0.25s ease forwards; }
 @keyframes clock-blur {
@@ -1094,10 +1085,7 @@ a > .svg-icon svg[stroke="currentColor"] { fill: none; }
 
 /* ── Tablet portrait ≤768px ── */
 @media (max-width: 768px) {
-  .topbar { padding: 6px 0; }
-  .topbar .container  { flex-direction: column; text-align: center; gap: 6px; }
-  .topbar-left        { display: none; }
-  .topbar-right       { justify-content: center; gap: 20px; }
+  .topbar { padding: 5px 0; }
 
   .hero         { min-height: 75vh; padding: 40px 0; }
   .hero-badges  { gap: 16px; }

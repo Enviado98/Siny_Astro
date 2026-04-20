@@ -49,18 +49,8 @@ const nav = lang === 'es'
 
 <!-- TOPBAR -->
 <div class="topbar">
-  <div class="container">
-    <div class="topbar-left">
-      <a href={`tel:+17253406758`}>
-        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.77a16 16 0 0 0 6 6l1.92-1.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
-        (725) 340-6758
-      </a>
-      <a href="mailto:info@guzmantaxaccounting.com">info@guzmantaxaccounting.com</a>
-    </div>
-    <div class="topbar-right">
-      <span id="office-status" class="office-status"></span>
-      <a href="https://www.facebook.com/guzmantaxaccounting" target="_blank" rel="noopener">Facebook</a>
-    </div>
+  <div class="topbar-center">
+    <span id="office-status" class="office-status"></span>
   </div>
 </div>
 
@@ -97,23 +87,27 @@ const nav = lang === 'es'
     const months = lang === 'en' ? MONTHS_EN : MONTHS_ES;
     const dateStr = d.getDate() + ' ' + months[d.getMonth()] + ' ' + String(d.getFullYear()).slice(2);
 
-    let dot, label;
+    let badge, detail;
+    const totalMin = now.getHours() * 60 + now.getMinutes();
     if (status.state === 'open') {
-      dot = '<span class="status-dot dot-green"></span>';
-      label = lang === 'en' ? 'Open now' : 'Abierto ahora';
+      badge = '<span class="status-badge badge-open">' + (lang === 'en' ? 'OPEN' : 'ABIERTO') + '</span>';
+      detail = lang === 'en' ? 'Closes at 7 PM' : 'Cierra a las 7 PM';
     } else if (status.state === 'closing') {
-      dot = '<span class="status-dot dot-yellow"></span>';
-      label = lang === 'en' ? 'Closes soon' : 'Cierra pronto';
+      const minsLeft = 19 * 60 - totalMin;
+      badge = '<span class="status-badge badge-warn">' + (lang === 'en' ? 'CLOSES SOON' : 'CIERRA PRONTO') + '</span>';
+      detail = lang === 'en' ? 'Closes in ' + minsLeft + ' min' : 'Cierra en ' + minsLeft + ' min';
     } else if (status.state === 'opening') {
-      dot = '<span class="status-dot dot-yellow"></span>';
-      label = lang === 'en' ? 'Opens soon' : 'Abre pronto';
+      const minsLeft = 9 * 60 - totalMin;
+      badge = '<span class="status-badge badge-warn">' + (lang === 'en' ? 'OPENS SOON' : 'ABRE PRONTO') + '</span>';
+      detail = lang === 'en' ? 'Opens in ' + minsLeft + ' min' : 'Abre en ' + minsLeft + ' min';
     } else {
-      dot = '<span class="status-dot dot-red"></span>';
-      label = lang === 'en' ? 'Closed' : 'Cerrado';
+      badge = '<span class="status-badge badge-closed">' + (lang === 'en' ? 'CLOSED' : 'CERRADO') + '</span>';
+      detail = lang === 'en' ? 'Opens tomorrow 9 AM' : 'Abre mañana 9 AM';
     }
 
     const timeStr = pad(h) + ':' + pad(m) + ':' + pad(s);
-    return dot + '<span class="status-label">' + label + '</span>'
+    return badge
+      + '<span class="status-detail">' + detail + '</span>'
       + '<span class="status-sep">·</span>'
       + '<span class="status-date">' + dateStr + '</span>'
       + '<span class="status-sep">·</span>'
