@@ -58,14 +58,111 @@ const nav = lang === 'es'
       <a href="mailto:info@guzmantaxaccounting.com">info@guzmantaxaccounting.com</a>
     </div>
     <div class="topbar-right">
-      <span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        {lang === 'es' ? 'Dom – Vie: 9 AM – 7 PM' : 'Sun – Fri: 9 AM – 7 PM'}
-      </span>
+      <span id="office-status" class="office-status"></span>
       <a href="https://www.facebook.com/guzmantaxaccounting" target="_blank" rel="noopener">Facebook</a>
     </div>
   </div>
 </div>
+
+<script>
+(function() {
+  const TIMEZONE = 'America/Los_Angeles';
+  const OPEN_HOUR = 9;
+  const CLOSE_HOUR = 19;
+  const OPEN_DAYS = [0,1,2,3,4,5]; // Dom=0 a Vie=5
+
+  const MONTHS_ES = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  const MONTHS_EN = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const lang = document.documentElement.lang || 'es';
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function getStatus(now) {
+    const day = now.getDay();
+    const hour = now.getHours();
+    const min = now.getMinutes();
+    const totalMin = hour * 60 + min;
+    const openMin = OPEN_HOUR * 60;
+    const closeMin = CLOSE_HOUR * 60;
+    const isOpenDay = OPEN_DAYS.includes(day);
+
+    if (!isOpenDay) return { state: 'closed' };
+    if (totalMin >= openMin && totalMin < closeMin - 30) return { state: 'open' };
+    if (totalMin >= closeMin - 30 && totalMin < closeMin) return { state: 'closing' };
+    if (totalMin >= openMin - 30 && totalMin < openMin) return { state: 'opening' };
+    return { state: 'closed' };
+  }
+
+  function renderStatus(status, d, h, m, s) {
+    const months = lang === 'en' ? MONTHS_EN : MONTHS_ES;
+    const dateStr = d.getDate() + ' ' + months[d.getMonth()] + ' ' + String(d.getFullYear()).slice(2);
+
+    let dot, label;
+    if (status.state === 'open') {
+      dot = '<span class="status-dot dot-green"></span>';
+      label = lang === 'en' ? 'Open now' : 'Abierto ahora';
+    } else if (status.state === 'closing') {
+      dot = '<span class="status-dot dot-yellow"></span>';
+      label = lang === 'en' ? 'Closes soon' : 'Cierra pronto';
+    } else if (status.state === 'opening') {
+      dot = '<span class="status-dot dot-yellow"></span>';
+      label = lang === 'en' ? 'Opens soon' : 'Abre pronto';
+    } else {
+      dot = '<span class="status-dot dot-red"></span>';
+      label = lang === 'en' ? 'Closed' : 'Cerrado';
+    }
+
+    return dot + '<span class="status-label">' + label + '</span>'
+      + '<span class="status-sep">·</span>'
+      + '<span class="status-date">' + dateStr + '</span>'
+      + '<span class="status-sep">·</span>'
+      + '<span class="status-time">'
+      + '<span class="clock-digit" id="cl-h">' + pad(h) + '</span>'
+      + '<span class="clock-colon">:</span>'
+      + '<span class="clock-digit" id="cl-m">' + pad(m) + '</span>'
+      + '<span class="clock-colon">:</span>'
+      + '<span class="clock-digit" id="cl-s">' + pad(s) + '</span>'
+      + '</span>';
+  }
+
+  function fadeUpdate(id, val) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const newVal = val;
+    if (el.textContent === newVal) return;
+    el.style.transition = 'opacity 0.15s';
+    el.style.opacity = '0';
+    setTimeout(() => {
+      el.textContent = newVal;
+      el.style.opacity = '1';
+    }, 150);
+  }
+
+  let lastMin = -1;
+
+  function tick() {
+    const now = new Date(new Date().toLocaleString('en-US', { timeZone: TIMEZONE }));
+    const h = now.getHours();
+    const m = now.getMinutes();
+    const s = now.getSeconds();
+    const status = getStatus(now);
+    const el = document.getElementById('office-status');
+    if (!el) return;
+
+    if (lastMin !== m) {
+      el.innerHTML = renderStatus(status, now, h, m, s);
+      lastMin = m;
+    } else {
+      fadeUpdate('cl-s', pad(s));
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    tick();
+    setInterval(tick, 1000);
+  });
+})();
+</script>
 
 <!-- HEADER -->
 <header class="header">

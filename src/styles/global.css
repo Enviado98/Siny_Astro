@@ -1050,6 +1050,19 @@ a > .svg-icon svg[stroke="currentColor"] { fill: none; }
    ============================================ */
 
 /* ── Desktop amplio ≤1200px ── */
+
+/* ---- OFFICE STATUS CLOCK ---- */
+.office-status { display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; }
+.status-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.dot-green  { background: #22c55e; box-shadow: 0 0 5px #22c55e88; }
+.dot-yellow { background: #f59e0b; box-shadow: 0 0 5px #f59e0b88; }
+.dot-red    { background: #ef4444; box-shadow: 0 0 5px #ef444488; }
+.status-label { font-weight: 600; }
+.status-sep  { color: #aaa; }
+.status-date { color: #666; }
+.status-time { font-variant-numeric: tabular-nums; letter-spacing: 0.02em; }
+.clock-digit { display: inline-block; min-width: 1.2ch; text-align: center; }
+.clock-colon { opacity: 0.5; }
 @media (max-width: 1200px) {
   .nav-menu a { padding: 8px 10px; font-size: 0.88rem; }
   .nav-phone  { font-size: 0.95rem; }
