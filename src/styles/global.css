@@ -164,12 +164,23 @@ p { margin-bottom: 1rem; }
 .nav-logo img { display: none; }
 
 /* ── CSS Text Logo ── */
+@keyframes letterUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes subFadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 .nav-logo {
   text-decoration: none;
   display: inline-flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
 }
-.logo-text {
+.logo-wordmark {
   font-family: Georgia, 'Times New Roman', serif;
   font-size: 1.55rem;
   font-weight: 400;
@@ -178,14 +189,30 @@ p { margin-bottom: 1rem; }
   line-height: 1;
   display: inline-flex;
   align-items: baseline;
-  gap: 0;
+}
+.logo-letter {
+  display: inline-block;
+  opacity: 0;
+  animation: letterUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: calc(var(--i) * 55ms);
 }
 .logo-g {
   font-size: 2.4rem;
   font-weight: 400;
   color: var(--primary);
   line-height: 0.85;
-  display: inline-block;
+}
+.logo-sub {
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.52rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  opacity: 0;
+  animation: subFadeIn 0.4s ease forwards;
+  animation-delay: 400ms;
+  padding-left: 2px;
 }
 .logo-text--footer {
   display: inline-flex;
@@ -1163,7 +1190,7 @@ a > .svg-icon svg[stroke="currentColor"] { fill: none; }
 /* ── Mobile ≤600px ── */
 @media (max-width: 600px) {
   .nav { padding: 12px 0; }
-  .nav-logo .logo-text { font-size: 1.35rem; }
+  .nav-logo .logo-wordmark { font-size: 1.35rem; }
   .nav-logo .logo-g { font-size: 2.1rem; }
 
   h1 { font-size: clamp(1.75rem, 7vw, 2.2rem); }
@@ -1226,7 +1253,7 @@ a > .svg-icon svg[stroke="currentColor"] { fill: none; }
   .hero-content p { font-size: 0.95rem; }
   .hero-badges { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
 
-  .nav-logo .logo-text { font-size: 1.2rem; }
+  .nav-logo .logo-wordmark { font-size: 1.2rem; }
   .nav-logo .logo-g { font-size: 1.9rem; }
   .nav-menu.open { width: 100%; }
 
