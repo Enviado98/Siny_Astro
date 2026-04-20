@@ -226,5 +226,24 @@ const siteUrl = 'https://www.guzmantaxaccounting.com';
   });
 })();
   </script>
+
+  <script is:inline>
+(function initDragScroll() {
+  document.querySelectorAll('.testimonials-grid').forEach(function(el) {
+    var isDown = false, startX, scrollLeft;
+    el.addEventListener('mousedown', function(e) {
+      isDown = true; startX = e.pageX - el.offsetLeft; scrollLeft = el.scrollLeft;
+    });
+    el.addEventListener('mouseleave', function() { isDown = false; });
+    el.addEventListener('mouseup', function() { isDown = false; });
+    el.addEventListener('mousemove', function(e) {
+      if (!isDown) return;
+      e.preventDefault();
+      var x = e.pageX - el.offsetLeft;
+      el.scrollLeft = scrollLeft - (x - startX) * 1.2;
+    });
+  });
+})();
+  </script>
 </body>
 </html>

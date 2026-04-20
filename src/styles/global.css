@@ -703,23 +703,61 @@ p { margin-bottom: 1rem; }
 
 /* ---- TESTIMONIALS ---- */
 .testimonials-section { background: var(--gray); }
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
+.testimonials-track-wrap {
+  overflow: hidden;
+  margin: 0 calc(-1 * var(--container-pad, 24px));
+  padding: 0 var(--container-pad, 24px);
 }
+.testimonials-grid {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 12px;
+  cursor: grab;
+}
+.testimonials-grid:active { cursor: grabbing; }
+.testimonials-grid::-webkit-scrollbar { display: none; }
+.testimonials-grid { scrollbar-width: none; }
 .testimonial-card {
   background: var(--bg);
   border-radius: 12px;
-  padding: 28px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  padding: 22px 22px 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  min-width: 300px;
+  max-width: 300px;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-shrink: 0;
+  position: relative;
 }
-.testimonial-stars { color: #f5a623; font-size: 1rem; margin-bottom: 14px; }
-.testimonial-text { font-size: 0.92rem; color: var(--text-light); font-style: italic; margin-bottom: 20px; }
-.testimonial-author { display: flex; align-items: center; gap: 12px; }
+.testimonial-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+.testimonial-stars { color: #f5a623; font-size: 1rem; }
+.testimonial-google-icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+.testimonial-text {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  font-style: italic;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+.testimonial-author { display: flex; align-items: center; gap: 10px; }
 .testimonial-avatar {
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: var(--primary);
   display: flex;
@@ -728,11 +766,11 @@ p { margin-bottom: 1rem; }
   color: var(--white);
   font-family: var(--font-body);
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 0.9rem;
   flex-shrink: 0;
 }
-.testimonial-author h4 { font-size: 0.95rem; margin-bottom: 2px; }
-.testimonial-author p { font-size: 0.8rem; color: var(--text-light); margin-bottom: 0; }
+.testimonial-author h4 { font-size: 0.9rem; margin-bottom: 2px; }
+.testimonial-author p { font-size: 0.75rem; color: var(--text-light); margin-bottom: 0; }
 
 /* ---- CLIENTS LOGOS ---- */
 .clients-section { padding: 50px 0; border-top: 1px solid var(--gray2); }
@@ -1094,13 +1132,11 @@ a > .svg-icon svg[stroke="currentColor"] { fill: none; }
 
   .services-grid    { grid-template-columns: repeat(2, 1fr); gap: 14px; }
   .blog-grid        { grid-template-columns: repeat(2, 1fr); gap: 18px; }
-  .testimonials-grid{ grid-template-columns: repeat(2, 1fr); gap: 16px; }
   .stats-grid       { grid-template-columns: repeat(2, 1fr); gap: 20px; }
   .team-grid        { grid-template-columns: repeat(2, 1fr); gap: 20px; }
 
   .service-card   { padding: 24px 20px; }
   .pricing-card   { padding: 28px 20px; }
-  .testimonial-card { padding: 22px 18px; }
   .form-card      { padding: 30px 24px; }
   .sidebar-card   { padding: 22px 18px; }
 
@@ -1135,7 +1171,6 @@ a > .svg-icon svg[stroke="currentColor"] { fill: none; }
 
   .services-grid    { grid-template-columns: 1fr; }
   .blog-grid        { grid-template-columns: 1fr; }
-  .testimonials-grid{ grid-template-columns: 1fr; }
   .pricing-grid     { grid-template-columns: 1fr; }
   .team-grid        { grid-template-columns: 1fr; }
   .footer-grid      { grid-template-columns: 1fr; gap: 24px; }
@@ -1160,7 +1195,6 @@ a > .svg-icon svg[stroke="currentColor"] { fill: none; }
   .pricing-card   { padding: 24px 18px; }
   .pricing-card.featured { padding: 28px 18px; }
 
-  .testimonial-card { padding: 20px 16px; }
 
   .blog-card-img  { height: 170px; }
   .blog-card-body { padding: 18px 16px; }
@@ -1198,7 +1232,7 @@ a > .svg-icon svg[stroke="currentColor"] { fill: none; }
   h1 { font-size: clamp(1.7rem, 9vw, 2rem); }
 
   .service-card { padding: 20px 16px; }
-  .pricing-card, .testimonial-card { padding: 20px 14px; }
+  .pricing-card { padding: 20px 14px; }
 
   .btn { padding: 12px 18px; }
   .hero-btns .btn { font-size: 0.88rem; }
