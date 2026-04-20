@@ -108,26 +108,34 @@ const schema = JSON.stringify({
 
 <script>
 (function () {
-  const hero = document.querySelector('.hero-display');
-  const siny = document.querySelector('.hero-photo-siny-wrap');
+  // Bug fix #3: measure the full .hero section, not just .hero-display
+  const heroSection = document.querySelector('.hero');
+  const siny   = document.querySelector('.hero-photo-siny-wrap');
   const jeziel = document.querySelector('.hero-photo-jeziel-wrap');
-  const names = document.querySelectorAll('.hero-team-name');
+  const names  = document.querySelectorAll('.hero-team-name');
 
-  if (!hero || !siny || !jeziel) return;
+  if (!heroSection || !siny || !jeziel) return;
+
+  // Wait for entry animations to finish before JS takes over opacity
+  let namesReady = false;
+  setTimeout(() => { namesReady = true; }, 1500);
 
   function onScroll() {
-    const rect = hero.getBoundingClientRect();
-    const heroH = hero.offsetHeight;
-    // How far the hero has scrolled out: 0 (fully visible) → 1 (fully gone)
+    const rect    = heroSection.getBoundingClientRect();
+    const heroH   = heroSection.offsetHeight;
+    // progress: 0 (hero fully visible) → 1 (hero fully scrolled out)
     const progress = Math.min(Math.max(-rect.top / heroH, 0), 1);
 
-    const spread = progress * 120; // max px spread
-    const fade   = 1 - Math.min(progress * 3, 1);
+    const spread = progress * 140; // max px spread
+    const fade   = 1 - Math.min(progress * 4, 1); // names fade faster
 
     siny.style.transform   = `translateX(${-spread}px)`;
     jeziel.style.transform = `translateX(${spread}px)`;
 
-    names.forEach(n => { n.style.opacity = fade; });
+    // Bug fix #1: only override opacity after entry animation is done
+    if (namesReady) {
+      names.forEach(n => { n.style.opacity = fade; });
+    }
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });

@@ -605,6 +605,7 @@ p { margin-bottom: 1rem; }
   text-transform: uppercase;
   color: var(--text-light);
   opacity: 0;
+  transition: opacity 0.1s linear;
 }
 .hero-photo-siny-wrap {
   animation: slideFromLeft 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
@@ -627,6 +628,7 @@ p { margin-bottom: 1rem; }
 .hero-photo-jeziel-wrap .hero-team-name {
   animation: heroFadeUp 0.4s ease forwards;
   animation-delay: 1s;
+  animation-fill-mode: forwards;
 }
 
 /* ── Content below ── */
