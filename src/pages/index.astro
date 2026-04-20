@@ -105,6 +105,34 @@ const schema = JSON.stringify({
   </div>
 </section>
 
+
+<script>
+(function () {
+  const hero = document.querySelector('.hero-display');
+  const siny = document.querySelector('.hero-photo-siny-wrap');
+  const jeziel = document.querySelector('.hero-photo-jeziel-wrap');
+  const names = document.querySelectorAll('.hero-team-name');
+
+  if (!hero || !siny || !jeziel) return;
+
+  function onScroll() {
+    const rect = hero.getBoundingClientRect();
+    const heroH = hero.offsetHeight;
+    // How far the hero has scrolled out: 0 (fully visible) → 1 (fully gone)
+    const progress = Math.min(Math.max(-rect.top / heroH, 0), 1);
+
+    const spread = progress * 120; // max px spread
+    const fade   = 1 - Math.min(progress * 3, 1);
+
+    siny.style.transform   = `translateX(${-spread}px)`;
+    jeziel.style.transform = `translateX(${spread}px)`;
+
+    names.forEach(n => { n.style.opacity = fade; });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+</script>
 <!-- SERVICES -->
 <section class="section">
   <div class="container">

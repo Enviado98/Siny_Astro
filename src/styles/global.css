@@ -610,6 +610,8 @@ p { margin-bottom: 1rem; }
   animation: slideFromLeft 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   animation-delay: 0.45s;
   opacity: 0;
+  will-change: transform;
+  transition: transform 0.05s linear;
 }
 .hero-photo-siny {
   mix-blend-mode: multiply;
@@ -618,6 +620,8 @@ p { margin-bottom: 1rem; }
   animation: slideFromRight 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   animation-delay: 0.6s;
   opacity: 0;
+  will-change: transform;
+  transition: transform 0.05s linear;
 }
 .hero-photo-siny-wrap .hero-team-name,
 .hero-photo-jeziel-wrap .hero-team-name {
