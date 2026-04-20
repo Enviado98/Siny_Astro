@@ -100,7 +100,7 @@ const nav = lang === 'es'
       detail = lang === 'en' ? 'Opens in ' + minsLeft + ' min' : 'Abre en ' + minsLeft + ' min';
     } else {
       badge = '<span class="status-badge badge-closed">' + (lang === 'en' ? 'CLOSED' : 'CERRADO') + '</span>';
-      detail = lang === 'en' ? 'Opens tomorrow 9 AM' : 'Abre mañana 9 AM';
+      const todayDay = d.getDay(); const todayMin = d.getHours() * 60 + d.getMinutes(); const OD = [0,1,2,3,4,5]; if (OD.includes(todayDay) && todayMin < 9 * 60) { detail = lang === 'en' ? 'Opens today at 9 AM' : 'Abre hoy a las 9 AM'; } else { let next = todayDay; do { next = (next + 1) % 7; } while (!OD.includes(next)); const DN_ES = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado']; const DN_EN = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']; detail = lang === 'en' ? 'Opens ' + DN_EN[next] + ' 9 AM' : 'Abre el ' + DN_ES[next] + ' a las 9 AM'; }
     }
 
     const timeStr = pad(h) + ':' + pad(m) + ':' + pad(s);
