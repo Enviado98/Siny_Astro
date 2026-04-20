@@ -530,6 +530,63 @@ p { margin-bottom: 1rem; }
   line-height: 1;
 }
 
+/* ── HERO TEAM PHOTOS ── */
+@keyframes slideFromLeft {
+  from { opacity: 0; transform: translateX(-70px) scale(0.96); }
+  to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+@keyframes slideFromRight {
+  from { opacity: 0; transform: translateX(70px) scale(0.96); }
+  to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-team {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 12px;
+  margin-bottom: 28px;
+  padding-top: 8px;
+}
+.hero-team-photo {
+  height: 200px;
+  width: auto;
+  object-fit: contain;
+  object-position: bottom;
+  filter: drop-shadow(0 8px 24px rgba(0,0,0,0.13));
+}
+.hero-photo-siny {
+  mix-blend-mode: multiply;
+  animation: slideFromLeft 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 0.1s;
+  opacity: 0;
+}
+.hero-photo-jeziel {
+  animation: slideFromRight 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 0.25s;
+  opacity: 0;
+}
+.hero-content-animated {
+  text-align: center;
+}
+.hero-eyebrow-anim {
+  opacity: 0;
+  animation: heroFadeUp 0.5s ease forwards;
+  animation-delay: 0.75s;
+}
+.hero-h1-anim {
+  opacity: 0;
+  animation: heroFadeUp 0.55s ease forwards;
+  animation-delay: 0.95s;
+}
+@media (max-width: 480px) {
+  .hero-team-photo { height: 145px; }
+  .hero-team { gap: 6px; margin-bottom: 18px; }
+}
+
 /* ---- SECTION HEADER ---- */
 .section-header { margin-bottom: 50px; }
 .section-header.text-center { max-width: 700px; margin: 0 auto 50px; }
