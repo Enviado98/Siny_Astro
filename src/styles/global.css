@@ -451,10 +451,11 @@ p { margin-bottom: 1rem; }
   padding: 2px 7px;
 }
 .lang-switch .ls-divider { display: none; }
-/* Móvil: siempre visible justo antes del hamburger */
-.lang-switch-mobile { display: none; }
+/* Móvil: agrupado con hamburger a la derecha */
+.nav-mobile-right { display: none; align-items: center; gap: 10px; }
+.lang-switch-mobile { display: inline-flex; }
 @media (max-width: 1280px) {
-  .lang-switch-mobile { display: inline-flex; }
+  .nav-mobile-right { display: flex; }
 }
 /* ============================================
    SECTIONS.CSS — Todas las secciones de contenido

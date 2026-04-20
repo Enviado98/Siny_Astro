@@ -106,16 +106,17 @@ const nav = lang === 'es'
         </a>
       </div>
 
-      <!-- Lang Switch móvil (siempre visible) -->
-      <a class="lang-switch lang-switch-mobile" data-lang-href={langHref} title={nav.langLabel === 'EN' ? 'English' : 'Español'}>
-        <span class={lang === 'es' ? 'ls-active' : 'ls-inactive'}>ES</span>
-        <span class="ls-divider"></span>
-        <span class={lang === 'en' ? 'ls-active' : 'ls-inactive'}>EN</span>
-      </a>
-
-      <button class="hamburger" aria-label={lang === 'es' ? 'Abrir menú' : 'Open menu'}>
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav-mobile-right">
+        <!-- Lang Switch móvil (siempre visible) -->
+        <a class="lang-switch lang-switch-mobile" data-lang-href={langHref} title={nav.langLabel === 'EN' ? 'English' : 'Español'}>
+          <span class={lang === 'es' ? 'ls-active' : 'ls-inactive'}>ES</span>
+          <span class="ls-divider"></span>
+          <span class={lang === 'en' ? 'ls-active' : 'ls-inactive'}>EN</span>
+        </a>
+        <button class="hamburger" aria-label={lang === 'es' ? 'Abrir menú' : 'Open menu'}>
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </nav>
   </div>
 </header>
