@@ -1045,9 +1045,9 @@ a > .svg-icon svg[stroke="currentColor"] { fill: none; }
 /* ---- OFFICE STATUS CLOCK ---- */
 .office-status { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; flex-wrap: wrap; justify-content: center; }
 .status-badge  { font-size: 0.58rem; font-weight: 800; letter-spacing: 0.1em; padding: 2px 8px; border-radius: 20px; }
-.badge-open    { background: #dcfce7; color: #15803d; }
-.badge-warn    { background: #fef9c3; color: #a16207; }
-.badge-closed  { background: #fee2e2; color: #b91c1c; }
+.badge-open    { background: #e5e5e5; color: #666; }
+.badge-warn    { background: #e5e5e5; color: #666; }
+.badge-closed  { background: #e5e5e5; color: #666; }
 .status-detail { font-weight: 500; color: #444; }
 .status-sep    { color: #bbb; }
 .status-date   { color: #888; }
