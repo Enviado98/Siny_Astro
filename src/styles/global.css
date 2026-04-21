@@ -640,12 +640,12 @@ p { margin-bottom: 1rem; }
 /* ── Scroll-driven: browsers modernos (Chrome 115+, Firefox 110+) ── */
 @supports (animation-timeline: scroll()) {
   @keyframes siny-scroll-out {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-180px); }
+    from { transform: translateX(0);     opacity: 1; }
+    to   { transform: translateX(-180px); opacity: 0; }
   }
   @keyframes jeziel-scroll-out {
-    from { transform: translateX(0); }
-    to   { transform: translateX(180px); }
+    from { transform: translateX(0);    opacity: 1; }
+    to   { transform: translateX(180px); opacity: 0; }
   }
   @keyframes names-fade-out {
     from { opacity: 1; }
