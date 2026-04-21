@@ -218,6 +218,10 @@ p { margin-bottom: 1rem; }
   animation: subFadeIn 0.4s ease forwards;
   animation-delay: 400ms;
   padding-left: 2px;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0;
 }
 .logo-text--footer {
   display: inline-flex;

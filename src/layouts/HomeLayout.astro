@@ -108,9 +108,12 @@ const googleIcon = `<svg class="testimonial-google-icon" viewBox="0 0 24 24" xml
         const rect = heroSection.getBoundingClientRect();
         const progress = Math.min(Math.max(-rect.top / (heroSection.offsetHeight * 0.45), 0), 1);
         const spread = progress * 180;
+        const fadeOut = 1 - Math.min(progress * 2.5, 1);
         siny.style.transform   = `translateX(${-spread}px)`;
         jeziel.style.transform = `translateX(${spread}px)`;
-        names.forEach(n => { n.style.opacity = String(1 - Math.min(progress * 2.5, 1)); });
+        siny.style.opacity     = String(fadeOut);
+        jeziel.style.opacity   = String(fadeOut);
+        names.forEach(n => { n.style.opacity = String(fadeOut); });
         ticking = false;
       }
       window.addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(update); ticking = true; } }, { passive: true });
