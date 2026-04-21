@@ -122,6 +122,40 @@ const googleIcon = `<svg class="testimonial-google-icon" viewBox="0 0 24 24" xml
 })();
 </script>
 
+<script>
+// ── Carrusel: scroll vertical pasa a la página, horizontal se queda en el carrusel ──
+(function () {
+  const grid = document.querySelector('.testimonials-grid');
+  if (!grid) return;
+
+  let startX = 0, startY = 0, decided = false, isHorizontal = false;
+
+  grid.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    decided = false;
+    isHorizontal = false;
+  }, { passive: true });
+
+  grid.addEventListener('touchmove', (e) => {
+    if (!decided) {
+      const dx = Math.abs(e.touches[0].clientX - startX);
+      const dy = Math.abs(e.touches[0].clientY - startY);
+      if (dx > 5 || dy > 5) {
+        isHorizontal = dx > dy;
+        decided = true;
+      }
+    }
+    // Si el gesto es vertical, prevenir que el carrusel lo consuma
+    // y dejar que la página haga scroll
+    if (decided && !isHorizontal) {
+      e.stopPropagation();
+      // No llamamos preventDefault para que el scroll de la página fluya
+    }
+  }, { passive: true });
+})();
+</script>
+
 <!-- ── SERVICES ── -->
 <section class="section">
   <div class="container">
