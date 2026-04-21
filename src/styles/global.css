@@ -1273,6 +1273,22 @@ a > .svg-icon svg[stroke="currentColor"] { fill: none; }
 .badge-open    { background: #e5e5e5; color: #666; }
 .badge-warn    { background: #e5e5e5; color: #666; }
 .badge-closed  { background: #e5e5e5; color: #666; }
+/* Fade rotator for logo-sub city */
+.logo-city-rotator {
+  position: relative;
+  display: inline-block;
+}
+.logo-city {
+  opacity: 0;
+  transition: opacity 0.7s ease;
+  position: absolute;
+  left: 0;
+  white-space: nowrap;
+}
+.logo-city.active {
+  opacity: 1;
+  position: relative;
+}
 .status-detail { font-weight: 500; color: #444; }
 .status-sep    { color: #bbb; }
 .status-date   { color: #888; }
