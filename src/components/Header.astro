@@ -159,14 +159,26 @@ const nav = lang === 'es'
     tick();
     setInterval(tick, 1000);
 
-    // ── Fade rotator para logo (Las Vegas ↔ Nevada) ──
+    // ── Flip rotator para logo (Las Vegas ↔ Nevada) ──
     const cities = document.querySelectorAll('.logo-city');
     let cityIdx = 0;
     setInterval(() => {
-      cities[cityIdx].classList.remove('active');
+      const current = cities[cityIdx];
       cityIdx = (cityIdx + 1) % cities.length;
-      cities[cityIdx].classList.add('active');
-    }, 3000);
+      const next = cities[cityIdx];
+
+      current.classList.remove('active');
+      current.classList.add('flip-out');
+
+      setTimeout(() => {
+        current.classList.remove('flip-out');
+        next.classList.add('flip-in');
+        setTimeout(() => {
+          next.classList.remove('flip-in');
+          next.classList.add('active');
+        }, 350);
+      }, 350);
+    }, 6000);
   });
 })();
 </script>
