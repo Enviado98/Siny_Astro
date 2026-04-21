@@ -1275,32 +1275,25 @@ a > .svg-icon svg[stroke="currentColor"] { fill: none; }
 .badge-closed  { background: #e5e5e5; color: #666; }
 /* Flip rotator for logo-sub city */
 .logo-city-rotator {
-  display: inline-block;
-  position: relative;
-  perspective: 600px;
-  width: 6.5ch;
-  height: 1.1em;
+  display: inline-grid;
   vertical-align: middle;
-  overflow: hidden;
+  perspective: 600px;
 }
 .logo-city {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
+  grid-area: 1 / 1;
   white-space: nowrap;
   transform-style: preserve-3d;
   backface-visibility: hidden;
+}
+.logo-city.hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 .logo-city.flip-out {
   animation: logo-flip-out 0.4s cubic-bezier(0.4,0,1,1) forwards;
 }
 .logo-city.flip-in {
   animation: logo-flip-in 0.4s cubic-bezier(0,0,0.6,1) forwards;
-}
-.logo-city.hidden {
-  opacity: 0;
-  pointer-events: none;
 }
 @keyframes logo-flip-out {
   0%   { transform: rotateX(0deg);   opacity: 1; }
