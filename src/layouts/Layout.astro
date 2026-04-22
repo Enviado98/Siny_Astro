@@ -2,7 +2,6 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
-import { ViewTransitions } from 'astro:transitions';
 
 export interface Props {
   title: string;
@@ -63,8 +62,6 @@ const siteUrl = 'https://www.guzmantaxaccounting.com';
 
   <!-- Schema JSON-LD -->
   {schema && <script type="application/ld+json" set:html={schema} />}
-
-  <ViewTransitions />
 </head>
 <body>
   <Header lang={lang} langHref={langHref} currentPath={Astro.url.pathname} />
@@ -98,6 +95,7 @@ const siteUrl = 'https://www.guzmantaxaccounting.com';
 
   <script is:inline>
 (function initMenu() {
+  if (document.querySelector('.fs-overlay')) return;
   const hamburger = document.querySelector('.hamburger');
   const originalMenu = document.querySelector('.nav-menu');
   const originalCta = document.querySelector('.nav-cta');
