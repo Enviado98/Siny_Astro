@@ -700,6 +700,97 @@ p { margin-bottom: 1rem; }
 .section-header p { color: var(--text-light); font-size: 1.05rem; margin-top: 12px; margin-bottom: 0; }
 
 /* ---- SERVICES GRID ---- */
+/* ---- SERVICES CAROUSEL (Linear-style) ---- */
+.services-carousel-section {
+  background: #0a0a0a;
+  padding: 80px 0 60px;
+}
+.services-carousel-section .section-header {
+  margin-bottom: 48px;
+}
+.services-carousel-track-wrap {
+  overflow: hidden;
+  padding: 0 max(24px, calc((100vw - 1100px) / 2));
+}
+.services-carousel {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding-bottom: 8px;
+  cursor: grab;
+}
+.services-carousel::-webkit-scrollbar { display: none; }
+.services-carousel.is-dragging { cursor: grabbing; }
+
+.service-card-color {
+  flex: 0 0 300px;
+  min-height: 380px;
+  background: var(--card-color);
+  border-radius: 20px;
+  padding: 32px;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+  color: #111;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.service-card-color:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+.scc-body {
+  flex: 1;
+}
+.service-card-color h3 {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #111;
+  margin: 0 0 14px;
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+}
+.service-card-color p {
+  font-size: 0.9rem;
+  color: rgba(0,0,0,0.65);
+  line-height: 1.6;
+  margin: 0;
+}
+.scc-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1.5px solid rgba(0,0,0,0.12);
+}
+.scc-icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #111;
+}
+.scc-icon svg {
+  width: 28px;
+  height: 28px;
+  stroke: #111;
+  fill: none;
+}
+.scc-link {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #111;
+  letter-spacing: 0.01em;
+}
+
+/* legacy class kept for servicios.astro page */
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -1352,6 +1443,7 @@ a > .svg-icon svg[stroke="currentColor"] { fill: none; }
   .section-sm { padding: 36px 0; }
 
   .services-grid    { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .service-card-color { flex: 0 0 270px; min-height: 350px; }
   .blog-grid        { grid-template-columns: repeat(2, 1fr); gap: 18px; }
   .stats-grid       { grid-template-columns: repeat(2, 1fr); gap: 20px; }
   .team-grid        { grid-template-columns: repeat(2, 1fr); gap: 20px; }
@@ -1391,6 +1483,8 @@ a > .svg-icon svg[stroke="currentColor"] { fill: none; }
   h3 { font-size: clamp(1.1rem, 4.5vw, 1.35rem); }
 
   .services-grid    { grid-template-columns: 1fr; }
+  .service-card-color { flex: 0 0 82vw; min-height: 320px; padding: 24px; }
+  .service-card-color h3 { font-size: 1.25rem; }
   .blog-grid        { grid-template-columns: 1fr; }
   .pricing-grid     { grid-template-columns: 1fr; }
   .team-grid        { grid-template-columns: 1fr; }
