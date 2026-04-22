@@ -273,7 +273,7 @@ const googleIcon = `<svg class="testimonial-google-icon" viewBox="0 0 24 24" xml
 </section>
 
 <!-- ── TESTIMONIALS ── -->
-<section class="testimonials-section">
+<section class="section testimonials-section">
   <div class="container">
     <div class="section-header text-center">
       <p class="eyebrow">{t.testimonials.eyebrow}</p>
@@ -283,25 +283,21 @@ const googleIcon = `<svg class="testimonial-google-icon" viewBox="0 0 24 24" xml
   </div>
   <div class="services-carousel-track-wrap">
     <div class="testimonials-grid">
-      {t.testimonials.items.map((item, i) => (
-        <div class="testimonial-card-color" style={`--card-color:${serviceColors[i % serviceColors.length]}`}>
-          <div class="tcc-body">
-            <div class="tcc-stars">★★★★★</div>
-            <p class="tcc-text">"{item.text}"</p>
-          </div>
-          <div class="scc-footer">
-            <div class="tcc-avatar">{item.initials}</div>
-            <div class="tcc-author">
-              <h4>{item.name}</h4>
-              <p>{t.testimonials.verifiedLabel}</p>
-            </div>
+      {t.testimonials.items.map(item => (
+        <div class="testimonial-card">
+          <div class="testimonial-card-top">
+            <div class="testimonial-stars">★★★★★</div>
             <Fragment set:html={googleIcon} />
+          </div>
+          <p class="testimonial-text">"{item.text}"</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">{item.initials}</div>
+            <div><h4>{item.name}</h4><p>{t.testimonials.verifiedLabel}</p></div>
           </div>
         </div>
       ))}
     </div>
   </div>
-  <div class="container" style="margin-top:0;"></div>
 </section>
 
 <!-- ── BLOG ── -->
