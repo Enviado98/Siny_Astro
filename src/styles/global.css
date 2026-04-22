@@ -995,8 +995,6 @@ p { margin-bottom: 1rem; }
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
-  touch-action: pan-x;
-  overscroll-behavior-x: contain;
   padding-bottom: 12px;
   cursor: grab;
   scrollbar-width: none;
