@@ -131,39 +131,7 @@ const googleIcon = `<svg class="testimonial-google-icon" viewBox="0 0 24 24" xml
 })();
 </script>
 
-<script>
-// ── Carrusel: scroll vertical pasa a la página, horizontal se queda en el carrusel ──
-(function () {
-  const grid = document.querySelector('.testimonials-grid');
-  if (!grid) return;
 
-  let startX = 0, startY = 0, decided = false, isHorizontal = false;
-
-  grid.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX;
-    startY = e.touches[0].clientY;
-    decided = false;
-    isHorizontal = false;
-  }, { passive: true });
-
-  grid.addEventListener('touchmove', (e) => {
-    if (!decided) {
-      const dx = Math.abs(e.touches[0].clientX - startX);
-      const dy = Math.abs(e.touches[0].clientY - startY);
-      if (dx > 5 || dy > 5) {
-        isHorizontal = dx > dy;
-        decided = true;
-      }
-    }
-    // Si el gesto es vertical, prevenir que el carrusel lo consuma
-    // y dejar que la página haga scroll
-    if (decided && !isHorizontal) {
-      e.stopPropagation();
-      // No llamamos preventDefault para que el scroll de la página fluya
-    }
-  }, { passive: true });
-})();
-</script>
 
 <!-- ── SERVICES ── -->
 <section class="services-carousel-section">
@@ -200,6 +168,26 @@ const googleIcon = `<svg class="testimonial-google-icon" viewBox="0 0 24 24" xml
 <script>
 (function initServicesDrag() {
   const carousel = document.querySelector('.services-carousel');
+  if (!carousel) return;
+  let isDown = false, startX, scrollLeft;
+  carousel.addEventListener('mousedown', (e) => {
+    isDown = true;
+    carousel.classList.add('is-dragging');
+    startX = e.pageX - carousel.offsetLeft;
+    scrollLeft = carousel.scrollLeft;
+  });
+  carousel.addEventListener('mouseleave', () => { isDown = false; carousel.classList.remove('is-dragging'); });
+  carousel.addEventListener('mouseup', () => { isDown = false; carousel.classList.remove('is-dragging'); });
+  carousel.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - carousel.offsetLeft;
+    carousel.scrollLeft = scrollLeft - (x - startX) * 1.2;
+  });
+})();
+
+(function initTestimonialsDrag() {
+  const carousel = document.querySelector('.testimonials-grid');
   if (!carousel) return;
   let isDown = false, startX, scrollLeft;
   carousel.addEventListener('mousedown', (e) => {
@@ -285,29 +273,35 @@ const googleIcon = `<svg class="testimonial-google-icon" viewBox="0 0 24 24" xml
 </section>
 
 <!-- ── TESTIMONIALS ── -->
-<section class="section testimonials-section">
+<section class="testimonials-section">
   <div class="container">
     <div class="section-header text-center">
       <p class="eyebrow">{t.testimonials.eyebrow}</p>
       <h2>{t.testimonials.h2}</h2>
       <p>{t.testimonials.p}</p>
     </div>
+  </div>
+  <div class="services-carousel-track-wrap">
     <div class="testimonials-grid">
-      {t.testimonials.items.map(item => (
-        <div class="testimonial-card">
-          <div class="testimonial-card-top">
-            <div class="testimonial-stars">★★★★★</div>
-            <Fragment set:html={googleIcon} />
+      {t.testimonials.items.map((item, i) => (
+        <div class="testimonial-card-color" style={`--card-color:${serviceColors[i % serviceColors.length]}`}>
+          <div class="tcc-body">
+            <div class="tcc-stars">★★★★★</div>
+            <p class="tcc-text">"{item.text}"</p>
           </div>
-          <p class="testimonial-text">"{item.text}"</p>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">{item.initials}</div>
-            <div><h4>{item.name}</h4><p>{t.testimonials.verifiedLabel}</p></div>
+          <div class="scc-footer">
+            <div class="tcc-avatar">{item.initials}</div>
+            <div class="tcc-author">
+              <h4>{item.name}</h4>
+              <p>{t.testimonials.verifiedLabel}</p>
+            </div>
+            <Fragment set:html={googleIcon} />
           </div>
         </div>
       ))}
     </div>
   </div>
+  <div class="container" style="margin-top:0;"></div>
 </section>
 
 <!-- ── BLOG ── -->
