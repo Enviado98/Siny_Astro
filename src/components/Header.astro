@@ -158,31 +158,6 @@ const nav = lang === 'es'
   document.addEventListener('DOMContentLoaded', () => {
     tick();
     setInterval(tick, 1000);
-
-    // ── Flip rotator para logo (Las Vegas ↔ Nevada) ──
-    const cities = document.querySelectorAll('.logo-city');
-    let cityIdx = 0;
-    setInterval(() => {
-      const current = cities[cityIdx];
-      const next = cities[(cityIdx + 1) % cities.length];
-
-      // Flip out el actual
-      current.classList.add('flip-out');
-
-      setTimeout(() => {
-        current.classList.remove('flip-out');
-        current.classList.add('hidden');
-
-        // Flip in el siguiente
-        next.classList.remove('hidden');
-        next.classList.add('flip-in');
-
-        setTimeout(() => {
-          next.classList.remove('flip-in');
-          cityIdx = (cityIdx + 1) % cities.length;
-        }, 400);
-      }, 400);
-    }, 6000);
   });
 })();
 </script>
@@ -192,10 +167,7 @@ const nav = lang === 'es'
   <div class="container">
     <nav class="nav">
       <a href={lang === 'es' ? '/' : '/en/'} class="nav-logo" aria-label="Guzman Tax Accounting">
-        <span class="logo-wordmark">
-          <span class="logo-letter logo-g" style="--i:0">G</span><span class="logo-letter" style="--i:1">u</span><span class="logo-letter" style="--i:2">z</span><span class="logo-letter" style="--i:3">m</span><span class="logo-letter" style="--i:4">á</span><span class="logo-letter" style="--i:5">n</span>
-        </span>
-        <span class="logo-sub">Taxes · <span class="logo-city-rotator"><span class="logo-city">Las Vegas</span><span class="logo-city hidden">Nevada</span></span></span>
+        <img src="/assets/logo-transparent.png" alt="Guzmán Tax Accounting & Multiservices" class="nav-logo-img" width="925" height="428" />
       </a>
 
       <ul class="nav-menu">
