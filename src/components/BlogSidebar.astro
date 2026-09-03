@@ -8,11 +8,11 @@ const isEs = lang === 'es';
 
 <aside>
   <div class="sidebar-card">
-    <h3>{isEs ? 'Consulta Gratuita' : 'Free Consultation'}</h3>
+    <h3>{isEs ? 'Consulta' : 'Consultation'}</h3>
     <p style="font-size:.9rem;color:var(--text-light);margin-bottom:16px;">
-      {isEs ? '¿Tienes preguntas sobre tus taxes o negocio? Te ayudamos gratis.' : 'Questions about your taxes or business? We can help for free.'}
+      {isEs ? '¿Tienes preguntas sobre tus taxes o negocio? Te ayudamos a resolverlas.' : 'Questions about your taxes or business? We can help you sort them out.'}
     </p>
-    <a href={isEs ? '/consulta-gratuita' : '/en/free-consultation'} class="btn btn-primary" style="width:100%;justify-content:center;">
+    <a href={isEs ? '/consulta' : '/en/consultation'} class="btn btn-primary" style="width:100%;justify-content:center;">
       {isEs ? 'Agendar Ahora' : 'Book Now'}
     </a>
     <a href="tel:+17253406758" class="btn btn-outline" style="width:100%;justify-content:center;margin-top:10px;">(725) 340-6758</a>

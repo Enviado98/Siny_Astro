@@ -72,8 +72,8 @@ export const es = {
         price: 'Desde $150',
         note: 'Por declaración',
         features: ['Forma 1040 Federal + State', 'W-2, 1099, intereses', 'Créditos fiscales (EITC, CTC)', 'Revisión de años anteriores', 'Atención en español'],
-        cta: 'Consulta Gratis',
-        ctaHref: '/consulta-gratuita',
+        cta: 'Consulta',
+        ctaHref: '/consulta',
         featured: false,
       },
       {
@@ -81,8 +81,8 @@ export const es = {
         price: 'Desde $350',
         note: 'Por declaración anual',
         features: ['LLC, S-Corp, C-Corp', 'Schedule C / Schedule E', 'Bookkeeping mensual', 'Nómina y Payroll', 'Asesoría fiscal estratégica', 'Soporte ante el IRS'],
-        cta: 'Consulta Gratis',
-        ctaHref: '/consulta-gratuita',
+        cta: 'Consulta',
+        ctaHref: '/consulta',
         featured: true,
       },
       {
@@ -91,7 +91,7 @@ export const es = {
         note: 'Soporte mensual',
         features: ['CFO virtual para tu negocio', 'Planeación fiscal anual', 'Reportes financieros mensuales', 'Estrategias de retiro (401k, IRA)', 'Atención prioritaria'],
         cta: 'Contáctanos',
-        ctaHref: '/consulta-gratuita',
+        ctaHref: '/consulta',
         featured: false,
       },
     ],
@@ -134,10 +134,10 @@ export const es = {
   // CTA
   cta: {
     eyebrow: '¿Listo para empezar?',
-    h2: 'Agenda Tu Consulta Gratuita Hoy',
+    h2: 'Agenda Tu Consulta Hoy',
     p: 'Sin compromiso. Te explicamos todo lo que necesitas saber sobre tus taxes o negocio.',
     btn1: 'Agenda una Consulta',
-    btn1Href: '/consulta-gratuita',
+    btn1Href: '/consulta',
     btn2: 'Llamar: (725) 340-6758',
   },
 };

@@ -74,8 +74,8 @@ export const en: HomeTranslations = {
         price: 'From $150',
         note: 'Per return',
         features: ['Federal 1040 + State', 'W-2, 1099, interest income', 'Tax credits (EITC, CTC)', 'Prior year review', 'Bilingual service'],
-        cta: 'Free Consultation',
-        ctaHref: '/en/free-consultation',
+        cta: 'Consultation',
+        ctaHref: '/en/consultation',
         featured: false,
       },
       {
@@ -83,8 +83,8 @@ export const en: HomeTranslations = {
         price: 'From $350',
         note: 'Per annual filing',
         features: ['LLC, S-Corp, C-Corp', 'Schedule C / Schedule E', 'Monthly bookkeeping', 'Payroll services', 'Strategic tax planning', 'IRS support'],
-        cta: 'Free Consultation',
-        ctaHref: '/en/free-consultation',
+        cta: 'Consultation',
+        ctaHref: '/en/consultation',
         featured: true,
       },
       {
@@ -93,7 +93,7 @@ export const en: HomeTranslations = {
         note: 'Monthly support',
         features: ['Virtual CFO for your business', 'Annual tax planning', 'Monthly financial reports', 'Retirement strategies (401k, IRA)', 'Priority service'],
         cta: 'Contact Us',
-        ctaHref: '/en/free-consultation',
+        ctaHref: '/en/consultation',
         featured: false,
       },
     ],
@@ -136,10 +136,10 @@ export const en: HomeTranslations = {
   // CTA
   cta: {
     eyebrow: 'Ready to get started?',
-    h2: 'Schedule Your Free Consultation Today',
+    h2: 'Schedule Your Consultation Today',
     p: 'No commitment. We explain everything you need to know about your taxes or business.',
     btn1: 'Book a Consultation',
-    btn1Href: '/en/free-consultation',
+    btn1Href: '/en/consultation',
     btn2: 'Call: (725) 340-6758',
   },
 };
