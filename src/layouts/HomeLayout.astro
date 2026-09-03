@@ -154,7 +154,7 @@ const googleIcon = `<svg class="testimonial-google-icon" viewBox="0 0 24 24" xml
   <div class="services-carousel-track-wrap">
     <div class="services-carousel">
       {t.services.items.map((svc, i) => (
-        <a href={svc.href} class={`service-card-color${i === 0 ? ' is-featured' : ''}`}>
+        <a href={svc.href} class={`service-card-color${i % 2 === 0 ? ' is-dark' : ''}`}>
           <div class="scc-body">
             <h3>{svc.title}</h3>
             <p>{svc.p}</p>
