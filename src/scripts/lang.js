@@ -1,5 +1,5 @@
 /* ============================================
-   LANG.JS — Detección y cambio de idioma
+   LANG.JS: Detección y cambio de idioma
    Toca solo esto cuando haya algo del idioma.
    ============================================ */
 

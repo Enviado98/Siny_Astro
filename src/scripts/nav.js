@@ -1,5 +1,5 @@
 /* ============================================
-   NAV.JS — Link activo en navbar
+   NAV.JS: Link activo en navbar
    ============================================ */
 
 (function initActiveNav() {

@@ -11,7 +11,7 @@ export const en: HomeTranslations = {
     h1a: 'Professional',
     h1span: 'Tax & Accounting',
     h1b: 'Services in Las Vegas',
-    p: 'Personalized service in English and Spanish for individuals, families, and businesses. No hidden fees, no surprises — real results.',
+    p: 'Personalized service in English and Spanish for individuals, families, and businesses. No hidden fees, no surprises. Real results.',
     cta1: 'Call Now',
     cta2: 'WhatsApp',
     badge1: '239+ Projects Completed',

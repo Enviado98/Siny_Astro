@@ -1,5 +1,5 @@
 /* ============================================
-   FORM.JS — Formulario de contacto
+   FORM.JS: Formulario de contacto
    Toca solo esto cuando haya algo del form.
    ============================================ */
 

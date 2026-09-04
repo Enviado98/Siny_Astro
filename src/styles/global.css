@@ -1,5 +1,5 @@
 /* ============================================
-   BASE.CSS — Variables, reset, utilidades, tipografía
+   BASE.CSS: Variables, reset, utilidades, tipografía
    Toca esto para: colores, fuentes, espaciados globales
    ============================================ */
 
@@ -7,7 +7,7 @@
 :root {
   --primary: #136286;      /* Cian del logo, oscurecido para cumplir contraste AA sobre fondos claros (nav, botones, textos) */
   --primary-dark: #0e4b63;
-  --cyan-bright: #29A7DF;  /* Cian real del logo — solo para uso sobre fondos oscuros (footer, banners) donde resalta con máximo contraste */
+  --cyan-bright: #29A7DF;  /* Cian real del logo, solo para uso sobre fondos oscuros (footer, banners) donde resalta con máximo contraste */
   --dark: #111111;
   --dark2: #1a1a1a;
   --white: #EBEBEB;
@@ -78,7 +78,7 @@ p { margin-bottom: 1rem; }
   margin-bottom: 0.5rem;
 }
 /* ============================================
-   BUTTONS.CSS — Todos los estilos de botones
+   BUTTONS.CSS: Todos los estilos de botones
    Toca esto para: cambiar tamaños, colores o variantes de botón
    ============================================ */
 
@@ -133,7 +133,7 @@ p { margin-bottom: 1rem; }
   transform: translateY(-2px);
 }
 /* ============================================
-   NAV.CSS — Topbar, header, menú desktop,
+   NAV.CSS: Topbar, header, menú desktop,
              hamburger, overlay fullscreen, lang-switch
    Toca esto para: cambiar la navegación
    ============================================ */
@@ -445,7 +445,7 @@ p { margin-bottom: 1rem; }
   .nav-mobile-right { display: flex; }
 }
 /* ============================================
-   SECTIONS.CSS — Todas las secciones de contenido
+   SECTIONS.CSS: Todas las secciones de contenido
    Toca esto para: cambiar hero, servicios, stats,
    pricing, blog, testimonios, contacto, form,
    equipo, footer, etc.
@@ -1303,7 +1303,7 @@ p { margin-bottom: 1rem; }
 .placeholder-section h3 { color: var(--text-light); margin-bottom: 10px; }
 .placeholder-section p { color: var(--text-light); font-size: 0.9rem; max-width: 400px; margin: 0 auto; }
 /* ============================================
-   ICONS.CSS — SVG icon system + animaciones CSS
+   ICONS.CSS: SVG icon system + animaciones CSS
    Toca esto para: cambiar tamaños de íconos o keyframes
    ============================================ */
 
@@ -1347,7 +1347,7 @@ a > .svg-icon svg[stroke="currentColor"] { fill: none; }
 .fade-in-delay-2 { animation-delay: 0.2s; opacity: 0; animation-fill-mode: both; }
 .fade-in-delay-3 { animation-delay: 0.3s; opacity: 0; animation-fill-mode: both; }
 /* ============================================
-   RESPONSIVE.CSS — Todos los @media queries
+   RESPONSIVE.CSS: Todos los @media queries
    Toca esto para: cambiar comportamiento en móvil/tablet
    ============================================ */
 

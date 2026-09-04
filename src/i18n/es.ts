@@ -9,7 +9,7 @@ export const es = {
     h1a: 'Servicios de',
     h1span: 'Taxes y Contabilidad',
     h1b: 'en Las Vegas',
-    p: 'Atención personalizada en español para personas, familias y negocios. Sin letras pequeñas, sin sorpresas — resultados reales.',
+    p: 'Atención personalizada en español para personas, familias y negocios. Sin letras pequeñas, sin sorpresas. Resultados reales.',
     cta1: 'Llamar Ahora',
     cta2: 'WhatsApp',
     badge1: '239+ Proyectos Completados',

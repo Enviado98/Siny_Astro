@@ -1,5 +1,5 @@
 /* ============================================
-   MENU.JS — Hamburger + overlay fullscreen
+   MENU.JS: Hamburger + overlay fullscreen
    Toca solo esto cuando haya algo del menú.
    ============================================ */
 

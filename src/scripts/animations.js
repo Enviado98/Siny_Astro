@@ -1,5 +1,5 @@
 /* ============================================
-   ANIMATIONS.JS — Scroll reveal + contadores
+   ANIMATIONS.JS: Scroll reveal + contadores
    Toca solo esto cuando haya algo visual/anim.
    ============================================ */
 
