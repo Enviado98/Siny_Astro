@@ -1479,8 +1479,8 @@ a > .svg-icon svg[stroke="currentColor"] { fill: none; }
   .btn { padding: 13px 22px; font-size: 0.95rem; }
   .hero-btns { flex-direction: column; gap: 10px; }
   .hero-btns .btn { width: 100%; justify-content: center; }
-  .cta-section .btn-group { flex-direction: column; align-items: stretch; gap: 12px; }
-  .cta-section .btn-group .btn { justify-content: center; }
+  .cta-section .btn-group { flex-direction: column; align-items: center; gap: 12px; }
+  .cta-section .btn-group .btn { justify-content: center; padding: 15px 42px; border-radius: 10px; }
 
   .footer-main { padding: 40px 0 24px; }
   .footer-brand img { height: 40px; }
