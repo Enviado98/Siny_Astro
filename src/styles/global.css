@@ -756,6 +756,7 @@ p { margin-bottom: 1rem; }
 .scc-icon {
   width: 44px;
   height: 44px;
+  flex-shrink: 0;
   background: rgba(0,0,0,0.07);
   border-radius: 12px;
   display: flex;
@@ -773,23 +774,30 @@ p { margin-bottom: 1rem; }
   stroke: currentColor;
   fill: none;
 }
-.scc-icon::after {
-  content: '';
-  display: block;
-  width: 1.5px;
-  height: 22px;
-  background: rgba(0,0,0,0.12);
-  margin-left: 14px;
-  flex-shrink: 0;
-}
-.is-dark .scc-icon::after { background: rgba(255,255,255,0.2); }
 .scc-link {
-  font-size: 0.82rem;
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.8rem;
   font-weight: 800;
   color: var(--primary);
   letter-spacing: 0.01em;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.14);
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
-.is-dark .scc-link { color: var(--cyan-bright); }
+.is-dark .scc-link {
+  color: var(--cyan-bright);
+  border-color: rgba(255,255,255,0.2);
+}
+.service-card-color:hover .scc-link {
+  background: rgba(0,0,0,0.05);
+  border-color: rgba(0,0,0,0.22);
+}
+.service-card-color.is-dark:hover .scc-link {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.32);
+}
 
 /* legacy class kept for servicios.astro page */
 .services-grid {
