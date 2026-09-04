@@ -105,7 +105,7 @@ const siteUrl = 'https://www.guzmantaxaccounting.com';
   overlay.setAttribute('aria-hidden', 'true');
   const closeBtn = document.createElement('button');
   closeBtn.className = 'fs-close';
-  closeBtn.setAttribute('aria-label', 'Cerrar menú');
+  closeBtn.setAttribute('aria-label', document.documentElement.lang === 'en' ? 'Close menu' : 'Cerrar menú');
   closeBtn.innerHTML = '<span></span><span></span>';
   closeBtn.addEventListener('click', closeMenu);
   overlay.appendChild(closeBtn);
@@ -223,12 +223,15 @@ const siteUrl = 'https://www.guzmantaxaccounting.com';
 (function initForm() {
   const contactForm = document.getElementById('contact-form');
   if (!contactForm) return;
+  const isEn = document.documentElement.lang === 'en';
   contactForm.addEventListener('submit', function(e) {
     e.preventDefault();
     const btn = contactForm.querySelector('button[type="submit"]');
-    btn.textContent = 'Enviando...'; btn.disabled = true;
+    btn.textContent = isEn ? 'Sending...' : 'Enviando...'; btn.disabled = true;
     setTimeout(function() {
-      contactForm.innerHTML = '<div style="text-align:center;padding:40px 20px;"><div style="font-size:3rem;margin-bottom:16px;">✅</div><h3>¡Mensaje enviado!</h3><p style="color:var(--text-light);">Gracias por contactarnos. Te responderemos dentro de 24 horas.</p></div>';
+      contactForm.innerHTML = isEn
+        ? '<div style="text-align:center;padding:40px 20px;"><div style="font-size:3rem;margin-bottom:16px;">✅</div><h3>Message sent!</h3><p style="color:var(--text-light);">Thanks for reaching out. We will respond within 24 hours.</p></div>'
+        : '<div style="text-align:center;padding:40px 20px;"><div style="font-size:3rem;margin-bottom:16px;">✅</div><h3>¡Mensaje enviado!</h3><p style="color:var(--text-light);">Gracias por contactarnos. Te responderemos dentro de 24 horas.</p></div>';
     }, 1500);
   });
 })();

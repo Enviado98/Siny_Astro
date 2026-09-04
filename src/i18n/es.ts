@@ -120,9 +120,9 @@ export const es = {
     cta: 'Ver Todos los Artículos',
     ctaHref: '/blog',
     posts: [
-      { img: '/assets/child-tax-credit-2024-amount.webp', imgAlt: 'Child Tax Credit 2024', tag: 'Tax Credits', title: 'How Much Is the Child Tax Credit for 2024?', p: 'Tax season is just around the corner. If you\'re a parent or guardian, you might qualify for the Child Tax Credit...', href: '/child-tax-credit-2024', year: '2024', min: '4' },
+      { img: '/assets/child-tax-credit-2024-amount.webp', imgAlt: 'Child Tax Credit 2024', tag: 'Tax Credits', title: '¿Cuánto Es el Child Tax Credit para 2024?', p: 'La temporada de impuestos está por comenzar. Si eres padre, madre o tutor legal, podrías calificar para el Child Tax Credit...', href: '/child-tax-credit-2024', year: '2024', min: '4' },
       { img: '/assets/taxes-banner.webp', imgAlt: 'Preparacion Impuestos 2026', tag: 'Taxes 2026', title: 'Preparación de Impuestos 2026 para la Comunidad Latina', p: 'La temporada de taxes ya comenzó. Todo lo que necesitas saber para declarar correctamente este año...', href: '/preparacion-impuestos-2026', year: '2025', min: '6' },
-      { img: '/assets/img-19-1.webp', imgAlt: 'IRS Immigrants', tag: 'IRS News', title: 'The IRS Just Flipped the Script on Immigrants', p: 'Un cambio notable en la política del IRS hacia los inmigrantes. Lo que necesitas saber ahora...', href: '/irs-immigrants', year: '2025', min: '5' },
+      { img: '/assets/img-19-1.webp', imgAlt: 'IRS Immigrants', tag: 'IRS News', title: 'El IRS Cambió las Reglas del Juego para los Inmigrantes', p: 'Un cambio notable en la política del IRS hacia los inmigrantes. Lo que necesitas saber ahora...', href: '/irs-immigrants', year: '2025', min: '5' },
     ],
   },
 

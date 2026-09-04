@@ -75,7 +75,7 @@ const isEs = lang === 'es';
 
   <div class="container">
     <div class="footer-bottom">
-      <span>© 2026 Guzman Tax Accounting & Multi-Services. All Rights Reserved.</span>
+      <span>{isEs ? '© 2026 Guzman Tax Accounting & Multi-Services. Todos los derechos reservados.' : '© 2026 Guzman Tax Accounting & Multi-Services. All Rights Reserved.'}</span>
       <div class="footer-bottom-links">
         <a href={isEs ? '/terminos-y-condiciones' : '/en/terms'}>{isEs ? 'Términos y Condiciones' : 'Terms'}</a>
         <a href={isEs ? '/politica-de-privacidad' : '/en/privacy-policy'}>{isEs ? 'Política de Privacidad' : 'Privacy Policy'}</a>
