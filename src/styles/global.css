@@ -45,6 +45,33 @@ a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
 button { cursor: pointer; border: none; background: none; font-family: inherit; }
 
+/* ---- FOCO ACCESIBLE ---- */
+/* Quita el highlight táctil azul de Chrome/Safari al tocar en móvil,
+   y el outline nativo del navegador (la "caja azul") al hacer click con mouse. */
+a, button, input, select, textarea, summary, [tabindex] {
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+/* Lo restituye -con la identidad de marca en vez del azul por defecto- solo
+   al navegar con teclado (Tab). Así la web se ve limpia sin perder accesibilidad:
+   quitar el outline sin reemplazo (outline: none a secas) es mala práctica. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+/* Sobre fondos oscuros (footer, menú fullscreen) --primary pierde contraste;
+   usamos el cian brillante que el proyecto ya reserva para esos fondos. */
+.footer :focus-visible,
+.fs-overlay :focus-visible {
+  outline-color: var(--cyan-bright);
+}
+
 /* ---- UTILITIES ---- */
 .container { max-width: var(--container); margin: 0 auto; padding: 0 20px; }
 .section { padding: 80px 0; }
@@ -1152,7 +1179,6 @@ p { margin-bottom: 1rem; }
   color: var(--text);
   background: var(--bg);
   transition: border-color 0.2s;
-  outline: none;
 }
 .form-group input:focus,
 .form-group select:focus,
