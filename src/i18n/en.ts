@@ -125,7 +125,7 @@ export const en: HomeTranslations = {
     posts: [
       { img: '/assets/child-tax-credit-2024-amount-1.webp', imgAlt: 'Child Tax Credit 2024', tag: 'Tax Credits', title: 'How Much Is the Child Tax Credit for 2024?', p: 'Tax season is just around the corner. If you\'re a parent or guardian, you might qualify for the Child Tax Credit...', href: '/en/child-tax-credit-2024', year: '2024' },
       { img: '/assets/taxes-banner.webp', imgAlt: 'Tax Preparation 2026', tag: 'Taxes 2026', title: 'Tax Preparation 2026 for the Latino Community', p: 'Tax season has started. Everything you need to know to file correctly this year...', href: '/en/tax-preparation-2026', year: '2025' },
-      { img: '/assets/img-19-1.webp', imgAlt: 'IRS Immigrants', tag: 'IRS News', title: 'The IRS Just Flipped the Script on Immigrants', p: 'A notable shift in IRS policy toward immigrants. What you need to know right now...', href: '/en/irs-immigrants', year: '2025' },
+      { img: '/assets/ChatGPT-Image-Nov-5-2025-07_25_28-PM.webp', imgAlt: 'IRS Immigrants', tag: 'IRS News', title: 'The IRS Just Flipped the Script on Immigrants', p: 'A notable shift in IRS policy toward immigrants. What you need to know right now...', href: '/en/irs-immigrants', year: '2025' },
     ],
   },
 
