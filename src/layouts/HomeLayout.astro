@@ -332,7 +332,8 @@ const verifiedBadge = `<span class="testimonial-verified-badge" title="Foto de p
             <span class="blog-tag">{post.tag}</span>
             <h3><a href={post.href}>{post.title}</a></h3>
             <p>{post.p}</p>
-            <div class="blog-meta"><span>{post.year}</span><span>{post.min} min</span></div>
+            <div class="blog-meta"><span>{post.year}</span></div>
+            <a href={post.href} class="blog-card-link">{t.blog.readMore}</a>
           </div>
         </div>
       ))}
