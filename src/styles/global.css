@@ -856,6 +856,26 @@ p { margin-bottom: 1rem; }
 }
 .service-card h3 { font-size: 1.25rem; margin-bottom: 10px; }
 .service-card p { color: var(--text-light); font-size: 0.92rem; margin-bottom: 0; }
+.service-card ul { list-style: none; margin-top: 4px; }
+.service-card li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 0.88rem;
+  color: var(--text-light);
+  line-height: 1.5;
+  margin-bottom: 7px;
+}
+.service-card li:last-child { margin-bottom: 0; }
+.service-card li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+}
 
 /* ---- STATS ---- */
 .stats-section {
